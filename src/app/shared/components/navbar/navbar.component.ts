@@ -8,4 +8,11 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class NavbarComponent {
   constructor(private translate: TranslateService) {}
+
+  switchLanguage(language: string) {
+    this.translate.use(language); // Cambiar idioma
+  }
+  isLanguageActive(language: string): boolean {
+    return this.translate.currentLang === language;
+  }
 }

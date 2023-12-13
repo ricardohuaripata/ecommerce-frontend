@@ -1,8 +1,8 @@
 <nav class="navbar bg-primary py-4" aria-label="Light offcanvas navbar">
-    <div class="container-fluid">
+    <div class="container-fluid mx-4">
 
         <div class="d-flex justify-content-start">
-            <button class="navbar-toggler border-0 rounded-0 me-4" type="button" data-bs-toggle="offcanvas"
+            <button class="navbar-toggler border-0 rounded-0 me-2" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -45,16 +45,16 @@
 
         <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasNavbarLight"
             aria-labelledby="offcanvasNavbarLightLabel">
-            <div class="offcanvas-header">
+            <div class="offcanvas-header mx-4">
                 <a href="/">
                     <span><img src="https://www.ogsbrand.com/images/logo-black.png" alt="Og's" width="64px"></span>
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body mx-4">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold fs-5" href="#">{{ 'title.home' | translate }}</a>
+                    <li class="nav-item my-4">
+                        <a class="nav-link fw-bold fs-5" href="/">{{ 'title.home' | translate }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fs-6" href="#">PEARL GIRL</a>
@@ -62,19 +62,26 @@
                     <li class="nav-item">
                         <a class="nav-link fs-6" href="#">LOS OG'S</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-4">
                         <a class="nav-link fw-bold fs-5" href="#">{{ 'title.cart' | translate }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold fs-5" href="#">{{ 'title.login' | translate }}</a>
+                    <li class="nav-item mt-2">
+                        <a class="nav-link fw-bold fs-5" href="/auth/login">{{ 'title.login' | translate }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold fs-5" href="#">{{ 'title.register' | translate }}</a>
+                    <li class="nav-item mt-2">
+                        <a class="nav-link fw-bold fs-5" href="/auth/register">{{ 'title.register' | translate }}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item mt-2">
                         <a class="nav-link fw-bold fs-5" href="#">{{ 'title.logout' | translate }}</a>
                     </li>
+                    <li class="nav-item mt-4">
+                        <span class="me-2 clickable" (click)="switchLanguage('en')"
+                            [ngClass]="{'fw-bold': isLanguageActive('en')}">English</span>
+                        <span class="clickable" (click)="switchLanguage('es')"
+                            [ngClass]="{'fw-bold': isLanguageActive('es')}">Español</span>
+                    </li>
                 </ul>
+
             </div>
         </div>
     </div>

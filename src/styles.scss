@@ -12,3 +12,14 @@ body {
 .fw-bold {
   color: black;
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+/* Estilos para el componente del footer */
+app-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
