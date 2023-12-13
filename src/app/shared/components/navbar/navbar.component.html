@@ -1,1 +1,81 @@
-<p>navbar works!</p>
+<nav class="navbar bg-primary py-4" aria-label="Light offcanvas navbar">
+    <div class="container-fluid">
+
+        <div class="d-flex justify-content-start">
+            <button class="navbar-toggler border-0 rounded-0 me-4" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbarLight" aria-controls="offcanvasNavbarLight"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="headerLogo_wrapper">
+                <a href="/">
+                    <span><img src="https://www.ogsbrand.com/images/logo-black.png" alt="Og's" width="64px"
+                            class="logo-img"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <a class="navbarLink me-4 d-flex" href="#">
+                <span class="me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M7.696.074a3.841 3.841 0 1 1 1.498 7.534A3.841 3.841 0 0 1 7.696.074ZM9 1.049a2.85 2.85 0 1 0-1.112 5.59 2.85 2.85 0 0 0 1.112-5.59Z">
+                        </path>
+                        <path
+                            d="M3.887 10.813A6.444 6.444 0 0 1 14.89 15.37a.494.494 0 1 1-.988 0v-.003a5.457 5.457 0 0 0-10.913 0v.003a.494.494 0 1 1-.988 0c0-1.71.679-3.348 1.887-4.557Z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="d-none d-sm-block">Cuenta</span>
+            </a>
+
+            <a class="navbarLink d-flex" href="#">
+                <span class="me-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+                        <path
+                            d="M14.387 5.16h-2.79V3.152a3.21 3.21 0 0 0-6.42 0V5.16H2.384l-.383 9.58a1.2 1.2 0 0 0 1.2 1.252h10.4a1.207 1.207 0 0 0 1.2-1.22l-.414-9.612ZM5.98 3.152a2.407 2.407 0 1 1 4.814 0V5.16H5.98V3.153Zm7.623 12.036h-10.4a.4.4 0 0 1-.4-.417l.352-8.81h2.022v1.6h.8v-1.6h4.814v1.6h.8v-1.6h2.023l.384 8.826a.4.4 0 0 1-.395.4v.001Z">
+                        </path>
+                    </svg>
+                </span>
+                <span class="d-none d-sm-block">Carrito</span>
+            </a>
+        </div>
+
+        <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasNavbarLight"
+            aria-labelledby="offcanvasNavbarLightLabel">
+            <div class="offcanvas-header">
+                <a href="/">
+                    <span><img src="https://www.ogsbrand.com/images/logo-black.png" alt="Og's" width="64px"></span>
+                </a>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-6" href="#">PEARL GIRL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fs-6" href="#">LOS OG'S</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" href="#">Carrito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" href="#">Registrarse</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link fw-bold fs-5" href="#">Cerrar sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

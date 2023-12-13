@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
+$primary: #ffcc03;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+
+.fw-bold {
+  color: black;
+}

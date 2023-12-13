@@ -1,0 +1,17 @@
+.offcanvas {
+  width: 380px;
+}
+
+@media (max-width: 470px) {
+  .offcanvas {
+    width: 260px;
+  }
+  .logo-img {
+    width: 48px;
+  }
+}
+
+.navbarLink {
+  text-decoration: none;
+  color: inherit;
+}
