@@ -17,9 +17,28 @@ body {
   cursor: pointer;
 }
 
-/* Estilos para el componente del footer */
-app-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+.header-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+
+.btn {
+  border-radius: 0; /* Bordes rectos */
+}
+
+.btn-lg {
+  height: 55px;
+}
+
+.form-control {
+  border-radius: 0; /* Bordes rectos */
+}
+
+.toggleVisibilityPassword {
+  position: absolute;
+  bottom: 1.1em;
+  right: 0;
+  cursor: pointer;
+  margin-right: 10px;
 }

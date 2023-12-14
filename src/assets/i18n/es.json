@@ -5,7 +5,18 @@
   "title.login": "Login",
   "title.register": "Registrarse",
   "title.logout": "Cerrar sesión",
-  "label.rights": "©2023. Reservados todos los derechos"
+  "label.rights": "©2023. Reservados todos los derechos",
+  "label.email": "Correo electrónico",
+  "label.password": "Contraseña",
+  "label.login": "Login",
+  "label.register": "Crear cuenta",
+  "label.passwordRepeat": "Repetir contraseña",
+  "label.firstname": "Nombre",
+  "label.lastname": "Apellidos",
+  "label.login.alternative": "¿No tienes una cuenta?",
+  "label.register.alternative": "¿Ya tienes una cuenta?"
+
+
 
 
 }

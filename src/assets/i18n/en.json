@@ -5,6 +5,16 @@
   "title.login": "Login",
   "title.register": "Register",
   "title.logout": "Logout",
-  "label.rights": "©2023. All rights reserved"
+  "label.rights": "©2023. All rights reserved",
+  "label.email": "Email",
+  "label.password": "Password",
+  "label.login": "Login",
+  "label.register": "Create account",
+  "label.passwordRepeat": "Repeat password",
+  "label.firstname": "Firstname",
+  "label.lastname": "Lastname",
+  "label.login.alternative": "Don't have an account?",
+  "label.register.alternative": "Already have an account?"
+
 
 }
