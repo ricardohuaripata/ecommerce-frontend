@@ -18,4 +18,9 @@ export class CategoryService {
   getCollections(): Observable<any> {
     return this.http.get<any>(this.API_URL + this.ENDPOINT);
   }
+
+  getCollection(categorySlugname: string): Observable<any> {
+    return this.http.get<any>(this.API_URL + this.ENDPOINT + '/slug/' + categorySlugname);
+  }
+
 }

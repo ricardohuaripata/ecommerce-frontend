@@ -15,11 +15,11 @@ export class ProductService {
     this.ENDPOINT = '/api/v1/color-product-variant';
   }
 
-  getColorProductVariantByCategorySlugname(
-    categorySlugname: string
+  getColorProductVariantByCategoryId(
+    categoryId: string
   ): Observable<any> {
     return this.http.get<any>(
-      this.API_URL + this.ENDPOINT + '/category/slug/' + categorySlugname
+      this.API_URL + this.ENDPOINT + '/category/id/' + categoryId
     );
   }
 }

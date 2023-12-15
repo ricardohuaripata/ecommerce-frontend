@@ -1,1 +1,11 @@
-<p>product-item works!</p>
+<article class="card h-100 rounded-0 border-0">
+    <a [routerLink]="['/collections', colorProductVariant.product.category.slug, colorProductVariant.product.slug]">
+        <img [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0"
+            alt="{{ colorProductVariant.product.title }}" />
+    </a>
+    <div class="card-body">
+        <h4 class="card-title fw-bold">{{ colorProductVariant.product.title }}</h4>
+        <p>{{ colorProductVariant.finalPrice }} €</p>
+
+    </div>
+</article>

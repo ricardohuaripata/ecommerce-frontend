@@ -1,19 +1,4 @@
-<main>
-    <div class="container my-5">
-        <div class="row row-cols-1 row-cols-md-4 g-4">
-            <div *ngFor="let colorProductVariant of colorProductVariantList">
-                <div class="card h-100 rounded-0 border-0">
-                    <a [routerLink]="['/']">
-                        <img [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0"
-                            alt="{{ colorProductVariant.product.title }}" />
-                    </a>
-                    <div class="card-body">
-                        <h4 class="card-title fw-bold">{{ colorProductVariant.product.title }}</h4>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+<main class="container my-5">
+    <app-product-list [colorProductVariantList]="this.colorProductVariantList"
+        [title]="this.targetCategory?.title!"></app-product-list>
 </main>

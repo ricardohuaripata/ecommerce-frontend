@@ -1,1 +1,10 @@
-<p>product-list works!</p>
+<section class="mx-2">
+    <h2 class="text-center header-title mb-4">{{ title }}</h2>
+
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        <div *ngFor="let colorProductVariant of colorProductVariantList" class="col col-6">
+            <app-product-item [colorProductVariant]="colorProductVariant"></app-product-item>
+        </div>
+    </div>
+</section>

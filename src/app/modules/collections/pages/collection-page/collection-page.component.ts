@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Category } from 'src/app/core/interfaces/category';
 import { ColorProductVariant } from 'src/app/core/interfaces/color-product-variant';
+import { CategoryService } from 'src/app/core/services/category.service';
 import { ProductService } from 'src/app/core/services/product.service';
 
 @Component({
@@ -11,27 +13,44 @@ import { ProductService } from 'src/app/core/services/product.service';
 })
 export class CollectionPageComponent implements OnInit {
   colorProductVariantList: ColorProductVariant[] = [];
-  categorySlugname!: string | null;
+  categorySlugname: string = '';
+  targetCategory: Category | null = null;
   private subscription: Subscription = new Subscription();
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private categoryService: CategoryService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.subscription.add(
       this.route.paramMap.subscribe((params) => {
-        this.categorySlugname = params.get('categorySlugname') ?? '';
-        this.getProducts(this.categorySlugname);
+        this.categorySlugname = params.get('categorySlugname')!;
+        this.loadCollection(this.categorySlugname);
       })
     );
   }
 
-  getProducts(categorySlugname: string): void {
+  loadCollection(categorySlugname: string): void {
+    this.subscription.add(
+      this.categoryService.getCollection(categorySlugname).subscribe(
+        (data: any) => {
+          this.targetCategory = data;
+          this.loadProducts(this.targetCategory!.id);
+        },
+        (error) => {
+          this.router.navigate(['/']);
+        }
+      )
+    );
+  }
+
+  loadProducts(categoryId: string): void {
     this.subscription.add(
       this.productService
-        .getColorProductVariantByCategorySlugname(categorySlugname)
+        .getColorProductVariantByCategoryId(categoryId)
         .subscribe(
           (data: any) => {
             this.colorProductVariantList = data.content;
