@@ -1,1 +1,19 @@
-<p>home-page works!</p>
+<main>
+    <div class="container my-5">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div *ngFor="let collection of collections">
+                <div class="card h-100 rounded-0 border-0">
+                    <a [routerLink]="['/collections/', collection.slug]">
+                        <img [src]="collection.featuredImageUrl" class="card-img-top rounded-0"
+                            alt="{{ collection.title }}" />
+                    </a>
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold">{{ collection.title }}</h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
