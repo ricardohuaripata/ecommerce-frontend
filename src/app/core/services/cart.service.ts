@@ -1,9 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
+  private API_URL: string;
+  private ENDPOINT: string;
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.API_URL = environment.API_URL;
+    this.ENDPOINT = '/api/v1/cart';
+  }
+
+  newCart(): Observable<any> {
+    return this.http.post<any>(this.API_URL + this.ENDPOINT, {});
+  }
+
+  addToCart(
+    cartId: string,
+    sizeColorProductVariantId: string
+  ): Observable<any> {
+    const body = {
+      sizeColorProductVariantId,
+    };
+    return this.http.patch<any>(
+      this.API_URL + this.ENDPOINT + '/' + cartId,
+      body
+    );
+  }
 }

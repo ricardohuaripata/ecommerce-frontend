@@ -7,6 +7,8 @@ import { CategoryService } from 'src/app/core/services/category.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
+import { CartService } from 'src/app/core/services/cart.service';
+import { ErrorService } from 'src/app/shared/services/error.service';
 
 @Component({
   selector: 'app-product-page',
@@ -20,13 +22,15 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   colorProductVariantList: ColorProductVariant[] = [];
   sizeColorProductVariantList: SizeColorProductVariant[] = [];
   disableAddToCartButton = true;
-  selectedSizeVariant?: SizeColorProductVariant; // id de la variante
+  selectedSizeVariant?: SizeColorProductVariant; // variante talla-color seleccionado
 
   private subscription: Subscription = new Subscription();
 
   constructor(
     private translate: TranslateService,
     private productService: ProductService,
+    private cartService: CartService,
+    private errorService: ErrorService,
     private route: ActivatedRoute,
     private router: Router
   ) {
@@ -84,12 +88,15 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                   .subscribe(
                     (data: any) => {
                       this.sizeColorProductVariantList = data;
-                      if(this.targetColorProductVariant?.id == this.selectedSizeVariant?.colorProductVariant.id) {
+                      if (
+                        this.targetColorProductVariant?.id ==
+                        this.selectedSizeVariant?.colorProductVariant.id
+                      ) {
                         this.disableAddToCartButton = false;
                       } else {
                         this.disableAddToCartButton = true;
                       }
-                      
+
                       console.log(this.sizeColorProductVariantList);
                       console.log(this.targetColorProductVariant);
                     },
@@ -114,7 +121,61 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   }
 
   addToCart(): void {
-    alert("añadido al carrito: " + this.selectedSizeVariant?.size + " para el producto " + this.selectedSizeVariant?.colorProductVariant.product.title + ", color " + this.selectedSizeVariant?.colorProductVariant.color.slug);
+    const cartId = localStorage.getItem('cart_id');
+
+    if (cartId) {
+      this.subscription.add(
+        this.cartService
+          .addToCart(cartId, this.selectedSizeVariant!.id)
+          .subscribe(
+            (data: any) => {
+              Swal.fire({
+                icon: 'success',
+                text: 'Añadido a la cesta',
+                showConfirmButton: false,
+                allowOutsideClick: false,
+                timer: 1500,
+              });
+            },
+            (error) => {
+              // this.addToNewCart();
+
+              this.errorService.msgError(error);
+
+            }
+          )
+      );
+    } else {
+      this.addToNewCart();
+    }
+  }
+
+  addToNewCart(): void {
+    this.subscription.add(
+      this.cartService.newCart().subscribe(
+        (data: any) => {
+          localStorage.setItem('cart_id', data.id);
+
+          this.subscription.add(
+            this.cartService
+              .addToCart(data.id, this.selectedSizeVariant!.id)
+              .subscribe(
+                (data: any) => {
+                  Swal.fire({
+                    icon: 'success',
+                    text: 'Añadido a la cesta',
+                    showConfirmButton: false,
+                    allowOutsideClick: false,
+                    timer: 1500,
+                  });
+                },
+                (error) => {}
+              )
+          );
+        },
+        (error) => {}
+      )
+    );
   }
 
   selectSize(selectedSizeVariant: SizeColorProductVariant): void {
@@ -122,5 +183,4 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     this.disableAddToCartButton = false;
     console.log(this.selectedSizeVariant);
   }
-
 }
