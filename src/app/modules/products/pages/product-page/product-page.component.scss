@@ -1,0 +1,11 @@
+.container {
+  max-width: 1450px;
+}
+
+.selected-color-variant {
+  border-bottom: 3px solid var(--brand-main);
+}
+
+.selected-size-variant {
+  background-color: var(--brand-main);
+}

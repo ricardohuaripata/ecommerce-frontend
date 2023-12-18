@@ -1,0 +1,81 @@
+<main class="container my-5">
+    <section class="mx-2">
+        <div class="row">
+            <!-- Primera columna -->
+            <div class="col-md-8">
+                <!-- Imágenes del producto -->
+
+                <div id="productCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item"
+                            *ngFor="let image of this.targetColorProductVariant?.productImageList; let i = index"
+                            [class.active]="i === 0">
+                            <img [src]="image.fileUrl" class="d-block w-100" alt="{{ image.fileName }}" />
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Segunda columna -->
+            <div class="col-md-4">
+                <!-- Título del producto -->
+                <h2 class="fw-bold mt-5">{{ this.targetColorProductVariant?.product?.title }}</h2>
+
+                <!-- Precio del producto -->
+                <p>{{ this.targetColorProductVariant?.finalPrice }} €</p>
+
+                <div class="mb-4">
+
+                    <div class="row row-cols-3 row-cols-md-4">
+
+                        <!-- Itera sobre las imágenes de otras variaciones de color -->
+                        <div class="col-md-4" *ngFor="let colorProductVariant of this.colorProductVariantList">
+                            <a [routerLink]="['/products', colorProductVariant.product.slug]"
+                                [queryParams]="{ color: colorProductVariant.color.slug}">
+                                <img [src]="colorProductVariant.mainImageUrl" class="img-fluid"
+                                    alt="{{ colorProductVariant.color.slug }}"
+                                    [class.selected-color-variant]="colorProductVariant.id === targetColorProductVariant?.id" />
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selección de tallas -->
+                <div class="mb-4">
+                    <p>{{ 'label.selectSize' | translate }}</p>
+                    <div class="btn-group" role="group" aria-label="Tallas">
+                        <button type="button" class="btn btn-outline-primary fw-bold"
+                            *ngFor="let sizeVariant of this.sizeColorProductVariantList;"
+                            (click)="selectSize(sizeVariant)"
+                            [class.selected-size-variant]="sizeVariant.id === selectedSizeVariant?.id">{{
+                            sizeVariant.size
+                            }}</button>
+                    </div>
+                </div>
+
+                <!-- Botón de añadir al carrito -->
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-primary btn-lg fw-bold" (click)="addToCart()"
+                        [disabled]="disableAddToCartButton">{{ 'label.addToCart' | translate
+                        }}</button>
+                </div>
+                <hr class="mt-5">
+
+                <!-- Descripción del producto -->
+                <div class="mt-5" [innerHTML]="this.targetColorProductVariant?.product?.description"></div>
+
+            </div>
+        </div>
+    </section>
+</main>

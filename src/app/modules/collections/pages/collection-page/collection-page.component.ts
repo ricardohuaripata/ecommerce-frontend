@@ -11,7 +11,7 @@ import { ProductService } from 'src/app/core/services/product.service';
   templateUrl: './collection-page.component.html',
   styleUrls: ['./collection-page.component.scss'],
 })
-export class CollectionPageComponent implements OnInit {
+export class CollectionPageComponent implements OnInit, OnDestroy {
   colorProductVariantList: ColorProductVariant[] = [];
   categorySlugname: string = '';
   targetCategory: Category | null = null;
@@ -38,7 +38,7 @@ export class CollectionPageComponent implements OnInit {
       this.categoryService.getCollection(categorySlugname).subscribe(
         (data: any) => {
           this.targetCategory = data;
-          this.loadProducts(this.targetCategory!.id);
+          this.loadColorProductVariants(this.targetCategory!.id);
         },
         (error) => {
           this.router.navigate(['/']);
@@ -47,10 +47,10 @@ export class CollectionPageComponent implements OnInit {
     );
   }
 
-  loadProducts(categoryId: string): void {
+  loadColorProductVariants(categoryId: string): void {
     this.subscription.add(
       this.productService
-        .getColorProductVariantByCategoryId(categoryId)
+        .getColorProductVariantsByCategoryId(categoryId)
         .subscribe(
           (data: any) => {
             this.colorProductVariantList = data.content;

@@ -31,7 +31,7 @@
                 <span class="d-none d-sm-block">{{ 'title.account' | translate }}</span>
             </a>
 
-            <a class="navbarLink d-flex" href="#">
+            <a class="navbarLink d-flex" href="/cart">
                 <span class="me-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
                         <path
@@ -56,14 +56,12 @@
                     <li class="nav-item my-4">
                         <a class="nav-link fw-bold fs-5" href="/">{{ 'title.home' | translate }}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-6" href="#">PEARL GIRL</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fs-6" href="#">LOS OG'S</a>
+                    <li class="nav-item" *ngFor="let collection of collections">
+                        <a [attr.href]="'/collections/' + collection.slug" class="nav-link fs-6">{{ collection.title
+                            }}</a>
                     </li>
                     <li class="nav-item mt-4">
-                        <a class="nav-link fw-bold fs-5" href="#">{{ 'title.cart' | translate }}</a>
+                        <a class="nav-link fw-bold fs-5" href="/cart">{{ 'title.cart' | translate }}</a>
                     </li>
                     <li class="nav-item mt-2">
                         <a class="nav-link fw-bold fs-5" href="/auth/login">{{ 'title.login' | translate }}</a>
