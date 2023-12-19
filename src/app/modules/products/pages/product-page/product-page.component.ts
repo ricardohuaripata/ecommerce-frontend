@@ -10,10 +10,13 @@ import Swal from 'sweetalert2';
 import { CartService } from 'src/app/core/services/cart.service';
 import { ErrorService } from 'src/app/shared/services/error.service';
 
+import { MessageService } from 'primeng/api';
+
 @Component({
   selector: 'app-product-page',
   templateUrl: './product-page.component.html',
   styleUrls: ['./product-page.component.scss'],
+  providers: [MessageService],
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   productSlugname: string = '';
@@ -32,7 +35,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private errorService: ErrorService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private messageService: MessageService
   ) {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('es');
@@ -121,6 +125,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   }
 
   addToCart(): void {
+    this.disableAddToCartButton = true;
+
     const cartId = localStorage.getItem('cart_id');
 
     if (cartId) {
@@ -129,19 +135,30 @@ export class ProductPageComponent implements OnInit, OnDestroy {
           .addToCart(cartId, this.selectedSizeVariant!.id)
           .subscribe(
             (data: any) => {
-              Swal.fire({
-                icon: 'success',
-                text: 'Añadido a la cesta',
-                showConfirmButton: false,
-                allowOutsideClick: false,
-                timer: 1500,
+              this.messageService.add({
+                severity: 'success',
+                detail: 'Item added to cart.',
               });
+
+              setTimeout(() => {
+                this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+              }, 1000);
             },
-            (error) => {
-              // this.addToNewCart();
-
-              this.errorService.msgError(error);
-
+            (event) => {
+              if (
+                event.error.statusCode === 404 ||
+                event.error.statusCode === 500
+              ) {
+                this.addToNewCart();
+              } else {
+                this.messageService.add({
+                  severity: 'error',
+                  detail: event.error.message,
+                });
+                setTimeout(() => {
+                  this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+                }, 1000);
+              }
             }
           )
       );
@@ -161,13 +178,13 @@ export class ProductPageComponent implements OnInit, OnDestroy {
               .addToCart(data.id, this.selectedSizeVariant!.id)
               .subscribe(
                 (data: any) => {
-                  Swal.fire({
-                    icon: 'success',
-                    text: 'Añadido a la cesta',
-                    showConfirmButton: false,
-                    allowOutsideClick: false,
-                    timer: 1500,
+                  this.messageService.add({
+                    severity: 'success',
+                    detail: 'Item added to cart.',
                   });
+                  setTimeout(() => {
+                    this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+                  }, 1000);
                 },
                 (error) => {}
               )

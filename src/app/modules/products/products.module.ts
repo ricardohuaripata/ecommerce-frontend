@@ -9,6 +9,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 
+import { ToastModule } from 'primeng/toast';
+
 @NgModule({
   declarations: [
     ProductPageComponent
@@ -16,6 +18,7 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     ProductsRoutingModule,
+    ToastModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
