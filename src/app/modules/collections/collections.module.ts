@@ -6,6 +6,7 @@ import { ProductItemComponent } from './components/product-item/product-item.com
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { CollectionPageComponent } from './pages/collection-page/collection-page.component';
 
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { CollectionPageComponent } from './pages/collection-page/collection-page
   ],
   imports: [
     CommonModule,
+    SharedModule,
     CollectionsRoutingModule
   ]
 })

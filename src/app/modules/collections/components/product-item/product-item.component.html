@@ -1,7 +1,7 @@
 <article class="card h-100 rounded-0 border-0">
     <a [routerLink]="['/products', colorProductVariant.product.slug]"
         [queryParams]="{ color: colorProductVariant.color.slug}">
-        <img [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0"
+        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0"
             alt="{{ colorProductVariant.product.title }}" />
     </a>
     <div class="card-body">

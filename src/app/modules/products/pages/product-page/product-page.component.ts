@@ -17,11 +17,12 @@ import { MessageService } from 'primeng/api';
 })
 export class ProductPageComponent implements OnInit, OnDestroy {
   productSlugname: string = '';
-  color: string = '';
+  colorQueryParam: string = '';
   targetColorProductVariant?: ColorProductVariant;
   colorProductVariantList: ColorProductVariant[] = [];
   sizeColorProductVariantList: SizeColorProductVariant[] = [];
   disableAddToCartButton = true;
+  buttonCooldown = false;
   selectedSizeVariant?: SizeColorProductVariant; // variante talla-color seleccionado
 
   private subscription: Subscription = new Subscription();
@@ -50,7 +51,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
             return this.route.queryParams;
           }),
           switchMap((queryParams) => {
-            this.color = queryParams['color'] || '';
+            this.colorQueryParam = queryParams['color'] || '';
 
             return this.productService.getColorProductVariantsByProductSlugname(
               this.productSlugname
@@ -66,7 +67,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
               // Encuentra el objeto en this.colorProductVariantList donde colorProductVariant.color.title coincide con this.color
               const foundColorVariant = this.colorProductVariantList.find(
                 (colorProductVariant) =>
-                  colorProductVariant.color.slug === this.color
+                  colorProductVariant.color.slug === this.colorQueryParam
               );
 
               if (foundColorVariant) {
@@ -74,7 +75,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
               } else {
                 console.log(
                   'No se encontró ningún variante con el color especificado:',
-                  this.color
+                  this.colorQueryParam
                 );
                 this.targetColorProductVariant =
                   this.colorProductVariantList[0];
@@ -88,6 +89,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                   .subscribe(
                     (data: any) => {
                       this.sizeColorProductVariantList = data;
+                      // Controlar que el usuario esta añadiendo a la cesta el mismo articulo que ve en pantalla
                       if (
                         this.targetColorProductVariant?.id ==
                         this.selectedSizeVariant?.colorProductVariant.id
@@ -121,7 +123,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   }
 
   addToCart(): void {
-    this.disableAddToCartButton = true;
+    this.buttonCooldown = true;
 
     const cartId = localStorage.getItem('cart_id');
 
@@ -137,7 +139,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
               });
 
               setTimeout(() => {
-                this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+                this.buttonCooldown = false;
               }, 1000);
             },
             (event) => {
@@ -152,7 +154,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                   detail: event.error.message,
                 });
                 setTimeout(() => {
-                  this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+                  this.buttonCooldown = false;
                 }, 1000);
               }
             }
@@ -179,7 +181,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                     detail: 'Item added to cart.',
                   });
                   setTimeout(() => {
-                    this.disableAddToCartButton = false; // Habilitar el botón después de 1 segundo
+                    this.buttonCooldown = false;
                   }, 1000);
                 },
                 (error) => {}

@@ -9,11 +9,20 @@
 
                 <div id="productCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                     <div class="carousel-inner">
-                        <div class="carousel-item"
-                            *ngFor="let image of this.targetColorProductVariant?.productImageList; let i = index"
-                            [class.active]="i === 0">
-                            <img [src]="image.fileUrl" class="d-block w-100" alt="{{ image.fileName }}" />
-                        </div>
+                        <ng-container
+                            *ngIf="targetColorProductVariant?.productImageList && targetColorProductVariant?.productImageList!.length > 0; else noImages">
+                            <div class="carousel-item"
+                                *ngFor="let image of targetColorProductVariant?.productImageList; let i = index"
+                                [class.active]="i === 0">
+                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="image.fileUrl" class="d-block w-100" alt="{{ image.fileName }}" />
+                            </div>
+                        </ng-container>
+                        <ng-template #noImages>
+                            <div class="carousel-item active">
+                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="targetColorProductVariant?.mainImageUrl" class="d-block w-100"
+                                    alt="{{ targetColorProductVariant?.mainImageName }}" />
+                            </div>
+                        </ng-template>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
                         data-bs-slide="prev">
@@ -44,7 +53,7 @@
                         <div class="col-md-4" *ngFor="let colorProductVariant of this.colorProductVariantList">
                             <a [routerLink]="['/products', colorProductVariant.product.slug]"
                                 [queryParams]="{ color: colorProductVariant.color.slug}">
-                                <img [src]="colorProductVariant.mainImageUrl" class="img-fluid"
+                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="colorProductVariant.mainImageUrl" class="img-fluid"
                                     alt="{{ colorProductVariant.color.slug }}"
                                     [class.selected-color-variant]="colorProductVariant.id === targetColorProductVariant?.id" />
 
@@ -69,8 +78,13 @@
                 <!-- Botón de añadir al carrito -->
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-primary btn-lg fw-bold" (click)="addToCart()"
-                        [disabled]="disableAddToCartButton">{{ 'label.addToCart' | translate
-                        }}</button>
+                        [disabled]="disableAddToCartButton || buttonCooldown">
+                        <span *ngIf="!buttonCooldown">
+                            {{ 'label.addToCart' | translate }}
+                        </span>
+                        <span *ngIf="buttonCooldown" class="spinner-border spinner-border-sm me-2" role="status"
+                            aria-hidden="true"></span>
+                    </button>
                 </div>
                 <hr class="mt-5">
 
