@@ -31,7 +31,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.categoryService.getCollections().subscribe(
         (data: any) => {
           this.collections = data;
-          console.log(this.collections);
         },
         (error) => {
           this.collections = [];

@@ -10,22 +10,24 @@ import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 
 import { ToastModule } from 'primeng/toast';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
-  declarations: [
-    ProductPageComponent
-  ],
-  imports: [
-    CommonModule,
-    ProductsRoutingModule,
-    ToastModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-  ]
+    declarations: [
+        ProductPageComponent
+    ],
+    imports: [
+        CommonModule,
+        ProductsRoutingModule,
+        ToastModule,
+        SharedModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+    ]
 })
 export class ProductsModule { }

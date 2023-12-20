@@ -3,12 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { ColorProductVariant } from 'src/app/core/interfaces/color-product-variant';
 import { SizeColorProductVariant } from 'src/app/core/interfaces/size-color-product-variant';
-import { CategoryService } from 'src/app/core/services/category.service';
 import { ProductService } from 'src/app/core/services/product.service';
 import { TranslateService } from '@ngx-translate/core';
-import Swal from 'sweetalert2';
 import { CartService } from 'src/app/core/services/cart.service';
-import { ErrorService } from 'src/app/shared/services/error.service';
 
 import { MessageService } from 'primeng/api';
 
@@ -33,7 +30,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private productService: ProductService,
     private cartService: CartService,
-    private errorService: ErrorService,
     private route: ActivatedRoute,
     private router: Router,
     private messageService: MessageService

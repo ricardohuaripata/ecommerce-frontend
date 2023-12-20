@@ -5,6 +5,7 @@
   "title.login": "Login",
   "title.register": "Register",
   "title.logout": "Logout",
+  "title.user.cart": "Your cart",
   "label.rights": "©2023. All rights reserved",
   "label.email": "Email",
   "label.password": "Password",

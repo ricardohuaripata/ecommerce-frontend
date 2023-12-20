@@ -58,7 +58,7 @@
                     <p>{{ 'label.selectSize' | translate }}</p>
                     <div class="btn-group" role="group" aria-label="Tallas">
                         <button type="button" class="btn btn-outline-primary fw-bold"
-                            *ngFor="let sizeVariant of this.sizeColorProductVariantList;"
+                            *ngFor="let sizeVariant of this.sizeColorProductVariantList | sizeListSort;"
                             (click)="selectSize(sizeVariant)"
                             [class.selected-size-variant]="sizeVariant.id === selectedSizeVariant?.id">{{
                             sizeVariant.size

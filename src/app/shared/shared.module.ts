@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SizeListSortPipe } from './pipes/size-list-sort.pipe';
 
 // multilenguaje
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -14,6 +15,7 @@ import { HttpLoaderFactory } from '../app.module';
   declarations: [
     FooterComponent,
     NavbarComponent,
+    SizeListSortPipe,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { HttpLoaderFactory } from '../app.module';
   exports: [
     FooterComponent,
     NavbarComponent,
+    SizeListSortPipe
   ]
 })
 export class SharedModule { }

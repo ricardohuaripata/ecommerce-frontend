@@ -15,6 +15,10 @@ export class CartService {
     this.ENDPOINT = '/api/v1/cart';
   }
 
+  getCart(cartId: string): Observable<any> {
+    return this.http.get<any>(this.API_URL + this.ENDPOINT + '/' + cartId);
+  }
+
   newCart(): Observable<any> {
     return this.http.post<any>(this.API_URL + this.ENDPOINT, {});
   }

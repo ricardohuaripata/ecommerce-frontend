@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import(`./modules/products/products.module`).then(m => m.ProductsModule)
   },
   {
+    path: 'shopping-cart',
+    loadChildren: () => import(`./modules/shopping-cart/shopping-cart.module`).then(m => m.ShoppingCartModule)
+  },
+  {
     path: '**',
     component: NotFoundPageComponent
   }
