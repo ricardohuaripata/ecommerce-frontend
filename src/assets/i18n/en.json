@@ -17,7 +17,8 @@
   "label.login.alternative": "Don't have an account?",
   "label.register.alternative": "Already have an account?",
   "label.addToCart": "Add to cart",
-  "label.selectSize": "Select size:"
+  "label.selectSize": "Select size:",
+  "label.notFound": "The page you requested does not exist"
 
 
 

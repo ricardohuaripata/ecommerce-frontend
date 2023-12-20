@@ -17,7 +17,9 @@
   "label.login.alternative": "¿No tienes una cuenta?",
   "label.register.alternative": "¿Ya tienes una cuenta?",
   "label.addToCart": "Añadir a la cesta",
-  "label.selectSize": "Selecciona una talla:"
+  "label.selectSize": "Selecciona una talla:",
+  "label.notFound": "La página solicitada no existe."
+
 
 
 
