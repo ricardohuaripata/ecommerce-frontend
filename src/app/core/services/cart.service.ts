@@ -35,4 +35,16 @@ export class CartService {
       body
     );
   }
+
+  deleteCartItem(cartItemId: string): Observable<any> {
+    return this.http.delete<any>(
+      this.API_URL + this.ENDPOINT + '/items/' + cartItemId
+    );
+  }
+
+  clearCart(cartId: string): Observable<any> {
+    return this.http.delete<any>(
+      this.API_URL + this.ENDPOINT + '/' + cartId + '/items'
+    );
+  }
 }

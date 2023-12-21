@@ -6,4 +6,7 @@ export interface Cart {
   dateLastModified: Date;
   dateExpiration: Date;
   cartItems: CartItem[];
+  totalAmount: number;
+  totalQuantity: number;
+
 }

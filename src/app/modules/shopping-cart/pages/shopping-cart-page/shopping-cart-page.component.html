@@ -7,12 +7,82 @@
             <!-- Primera columna -->
             <div class="col-md-8">
 
+                <div class="card mb-4 rounded-0 border-0">
+                    <div class="card-body">
+                        <div *ngIf="this.targetCart?.cartItems == null || targetCart?.cartItems!.length == 0">
+                            <p class="fs-4">{{ 'label.emptyCart1' | translate }}
+                            </p>
+                            <p>{{ 'label.emptyCart2' | translate }}
+                            </p>
+                        </div>
+
+
+                        <div *ngFor="let item of this.targetCart?.cartItems" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a [routerLink]="['/products', item.sizeColorProductVariant.colorProductVariant.product.slug]"
+                                        [queryParams]="{ color: item.sizeColorProductVariant.colorProductVariant.color.slug}">
+                                        <img [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
+                                            alt="{{ item.sizeColorProductVariant.colorProductVariant.product.slug }}"
+                                            class="img-thumbnail border-0 rounded-0" width="100" height="100">
+                                    </a>
+                                </div>
+                                <div class="col-md-10">
+
+
+                                    <div class="d-flex justify-content-between">
+                                        <p class="mt-0 fw-bold fs-5">{{
+                                            item.sizeColorProductVariant.colorProductVariant.product.title + " (" +
+                                            item.sizeColorProductVariant.colorProductVariant.color.title + " / " +
+                                            item.sizeColorProductVariant.size + ")"}}</p>
+                                        <span class="clickable ms-5" (click)="removeFromCart(item.id)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="mt-5 d-flex justify-content-between">
+                                        <p class="mb-0">{{ 'label.quantity' | translate }} {{ item.quantity }}</p>
+                                        <p class="mb-0">{{ item.sizeColorProductVariant.colorProductVariant.finalPrice
+                                            }} €</p>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
             <!-- Segunda columna -->
             <div class="col-md-4">
 
+                <div class="card rounded-0 border-0">
+                    <div class="card-body">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-lg fw-bold" (click)="clearCart()"
+                                [disabled]="this.targetCart?.cartItems == null || targetCart?.cartItems!.length == 0">{{
+                                'label.clearCart' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card rounded-0 border-0 mt-5">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-5">Total:</p>
+                            <p class="fs-5">{{ this.targetCart?.totalAmount }} €</p>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-lg fw-bold" [routerLink]="'/shopping-cart/checkout'"
+                                [disabled]="this.targetCart?.cartItems == null || targetCart?.cartItems!.length == 0">{{
+                                'label.checkout' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </div>

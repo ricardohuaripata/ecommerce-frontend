@@ -18,8 +18,12 @@
   "label.register.alternative": "¿Ya tienes una cuenta?",
   "label.addToCart": "Añadir a la cesta",
   "label.selectSize": "Selecciona una talla:",
-  "label.notFound": "La página solicitada no existe."
-
+  "label.notFound": "La página solicitada no existe.",
+  "label.quantity": "Cantidad: ",
+  "label.clearCart": "Vaciar",
+  "label.checkout": "Finalizar pedido",
+  "label.emptyCart1": "Tu carrito parece vacío",
+  "label.emptyCart2": "Agregue artículos a su carrito."
 
 
 
