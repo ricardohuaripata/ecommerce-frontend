@@ -1,4 +1,8 @@
 <main class="container my-5">
     <app-product-list [colorProductVariantList]="this.colorProductVariantList"
         [title]="this.targetCategory?.title!"></app-product-list>
+    <p-paginator *ngIf="this.colorProductVariantList && this.colorProductVariantList.length > 0"
+        [rows]="this.rowsPerPage" [totalRecords]="this.totalRecords" (onPageChange)="onPageChange($event)"
+        [showFirstLastIcon]="false"></p-paginator>
+
 </main>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
@@ -17,9 +17,13 @@ export class ProductService {
     this.ENDPOINT_2 = '/api/v1/size-color-product-variant';
   }
 
-  getColorProductVariantsByCategoryId(categoryId: string): Observable<any> {
+  getColorProductVariantsByCategoryId(
+    categoryId: string,
+    params: HttpParams
+  ): Observable<any> {
     return this.http.get<any>(
-      this.API_URL + this.ENDPOINT_1 + '/category/id/' + categoryId
+      this.API_URL + this.ENDPOINT_1 + '/category/id/' + categoryId,
+      { params }
     );
   }
 

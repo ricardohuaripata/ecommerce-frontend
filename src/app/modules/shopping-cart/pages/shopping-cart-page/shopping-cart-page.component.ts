@@ -11,6 +11,7 @@ import { CartService } from 'src/app/core/services/cart.service';
 })
 export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   targetCart?: Cart;
+  loading: boolean = true;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -32,6 +33,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
         this.cartService.getCart(cartId).subscribe(
           (data: any) => {
             this.targetCart = data;
+            this.loading = false;
             console.log(data);
           },
           (error) => {
@@ -50,6 +52,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
         (data: any) => {
           localStorage.setItem('cart_id', data.id);
           this.targetCart = data;
+          this.loading = false;
           console.log('Nuevo carrito creado con id: ' + this.targetCart!.id);
         },
         (error) => {}
