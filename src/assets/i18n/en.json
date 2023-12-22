@@ -23,12 +23,11 @@
   "label.clearCart": "Clear",
   "label.checkout": "Checkout",
   "label.emptyCart1": "Your cart seems empty",
-  "label.emptyCart2": "Add items to your cart."
-
-
-
-
-
-
+  "label.emptyCart2": "Add items to your cart.",
+  "label.validation.emailRequired": "Email is required",
+  "label.validation.invalidEmail": "The email address is not valid",
+  "label.validation.passwordRequired": "Password is required",
+  "label.showPassword": "Show",
+  "label.incorrectCredentials": "Invalid login credentials provided."
 
 }
