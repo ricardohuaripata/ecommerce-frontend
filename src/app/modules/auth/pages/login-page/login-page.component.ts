@@ -1,5 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/core/services/auth.service';
@@ -33,11 +38,47 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     );
 
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, this.emailValidator]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(8),
+          this.passwordFormatValidator,
+        ],
+      ]
     });
   }
   ngOnInit(): void {}
+
+  emailValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const email = control.value;
+    const pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    if (email && !pattern.test(email)) {
+      return { invalidEmail: true };
+    }
+
+    return null;
+  }
+
+  passwordFormatValidator(
+    control: AbstractControl
+  ): { [key: string]: boolean } | null {
+    const password = control.value;
+
+    // Verifica al menos una letra minúscula, una letra mayúscula, un número y un carácter especial
+    if (
+      !/(?=.*[a-z])/.test(password) ||
+      !/(?=.*[A-Z])/.test(password) ||
+      !/(?=.*\d)/.test(password) ||
+      !/(?=.*[!@#$%^&*()\-_=+{};:,<.>ยง?\\|[\]\/~`"'])/.test(password)
+    ) {
+      return { invalidPasswordFormat: true };
+    }
+
+    return null;
+  }
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;

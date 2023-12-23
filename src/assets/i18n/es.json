@@ -22,16 +22,16 @@
   "label.quantity": "Cantidad: ",
   "label.clearCart": "Vaciar",
   "label.checkout": "Finalizar pedido",
-  "label.emptyCart1": "Tu carrito parece vacío",
+  "label.emptyCart1": "Tu carrito está vacío",
   "label.emptyCart2": "Agregue artículos a su carrito.",
   "label.validation.emailRequired": "El correo electrónico es requerido",
   "label.validation.invalidEmail": "La dirección de correo electrónico no es válida",
+  "label.validation.invalidPassword": "La contraseña debe tener al menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un carácter especial",
   "label.validation.passwordRequired": "La contraseña es requerida",
+  "label.validation.passwordConfirmationRequired": "La confirmación de contraseña es requerida",
+  "label.validation.firstnameRequired": "El nombre es requerido",
+  "label.validation.lastnameRequired": "El apellido es requerido",
   "label.showPassword": "Mostrar",
-  "label.incorrectCredentials": "Se proporcionaron credenciales de inicio de sesión no válidas."
-
-
-
-
-
+  "label.incorrectCredentials": "Se proporcionaron credenciales de inicio de sesión no válidas.",
+  "message.success.signup": "Registrado exitosamente, ahora por favor inicie sesión"
 }
