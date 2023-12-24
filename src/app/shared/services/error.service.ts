@@ -10,13 +10,10 @@ export class ErrorService {
 
   msgError(event: HttpErrorResponse) {
     if (event.error.message != null) {
-      // mostrar mensaje de errores programados, por ej: 'contraseña incorrecta'(login), 'ya existe un username'(registro)
+      // mostrar mensaje de errores programados
       Swal.fire({
         icon: 'error',
         text: event.error.message,
-        customClass: {
-          confirmButton: 'confirm-button-class',
-        },
         allowOutsideClick: false,
       });
     } else {
@@ -24,10 +21,7 @@ export class ErrorService {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'Algo ha ido mal.',
-        customClass: {
-          confirmButton: 'confirm-button-class',
-        },
+        text: 'Something went wrong.',
         allowOutsideClick: false,
       });
     }
