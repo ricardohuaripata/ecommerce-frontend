@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { LanguageService } from 'src/app/core/services/language.service';
 
 @Component({
   selector: 'app-register-page',
@@ -30,14 +31,9 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private languageService: LanguageService
   ) {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
-    this.translate.use(
-      sessionStorage.getItem('lang') || this.translate.getDefaultLang()
-    );
-
     this.form = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -60,7 +56,12 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       ],
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.translate.use(this.languageService.currentLanguage);
+    this.languageService.currentLanguageSubject.subscribe((lang) => {
+      this.translate.use(lang);
+    });
+  }
 
   emailValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const email = control.value;

@@ -11,6 +11,8 @@ import { AuthService } from 'src/app/core/services/auth.service';
 
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+import { UserService } from 'src/app/core/services/user.service';
+import { LanguageService } from 'src/app/core/services/language.service';
 
 @Component({
   selector: 'app-login-page',
@@ -28,15 +30,11 @@ export class LoginPageComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private fb: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private languageService: LanguageService
   ) {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
-    this.translate.use(
-      sessionStorage.getItem('lang') || this.translate.getDefaultLang()
-    );
-
     this.form = this.fb.group({
       email: ['', [Validators.required, this.emailValidator]],
       password: [
@@ -49,7 +47,13 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       ],
     });
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    this.translate.use(this.languageService.currentLanguage);
+    this.languageService.currentLanguageSubject.subscribe((lang) => {
+      this.translate.use(lang);
+    });
+  }
 
   emailValidator(control: AbstractControl): { [key: string]: boolean } | null {
     const email = control.value;
@@ -101,10 +105,8 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       this.authService.login(body).subscribe({
         next: (response: any) => {
           localStorage.setItem('auth_token', response.headers.get('Jwt-Token'));
-
-          this.router.navigateByUrl('/account').then(() => {
-            location.reload();
-          });
+          this.userService.updateLoggedUser(response.body);
+          this.router.navigateByUrl('/account');
         },
         error: (event) => {
           this.form.get('password')?.reset();

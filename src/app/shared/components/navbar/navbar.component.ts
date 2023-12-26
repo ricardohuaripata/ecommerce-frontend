@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/core/interfaces/category';
 import { User } from 'src/app/core/interfaces/user';
-import { AuthService } from 'src/app/core/services/auth.service';
 import { CategoryService } from 'src/app/core/services/category.service';
+import { LanguageService } from 'src/app/core/services/language.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -22,27 +22,31 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private categoryService: CategoryService,
     private userService: UserService,
-    private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private languageService: LanguageService
   ) {}
 
   switchLanguage(language: string) {
+    this.languageService.setLanguage(language);
+    this.languageService.currentLanguageSubject.next(language);
     sessionStorage.setItem('lang', language);
-    location.reload();
   }
+
   isLanguageActive(language: string): boolean {
     return this.translate.currentLang === language;
   }
 
   ngOnInit(): void {
-    if (this.authService.validateTokenFromCache()) {
-      this.subscription.add(
-        this.userService.getUserDetails().subscribe((data: any) => {
-          this.loggedUser = data;
-          console.log('Usuario autenticado: ' + data.email);
-        })
-      );
-    }
+    this.translate.use(this.languageService.currentLanguage);
+    this.languageService.currentLanguageSubject.subscribe((lang) => {
+      this.translate.use(lang);
+    });
+
+    this.subscription.add(
+      this.userService.loggedUser$.subscribe((user) => {
+        this.loggedUser = user;
+      })
+    );
 
     this.subscription.add(
       this.categoryService.getCollections().subscribe(
@@ -58,8 +62,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   logout(): void {
     localStorage.removeItem('auth_token');
-    this.loggedUser = undefined;
-    this.router.navigateByUrl('/'); // Navega a la ruta definida ('/pagina' en este caso)
+    this.userService.updateLoggedUser(undefined); // Actualiza el usuario a 'undefined' o un valor predeterminado
+    this.router.navigateByUrl('/');
   }
 
   ngOnDestroy(): void {

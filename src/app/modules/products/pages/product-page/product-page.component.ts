@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/core/services/cart.service';
 
 import { MessageService } from 'primeng/api';
+import { LanguageService } from 'src/app/core/services/language.service';
 
 @Component({
   selector: 'app-product-page',
@@ -33,16 +34,16 @@ export class ProductPageComponent implements OnInit, OnDestroy {
     private cartService: CartService,
     private route: ActivatedRoute,
     private router: Router,
-    private messageService: MessageService
-  ) {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
-    this.translate.use(
-      sessionStorage.getItem('lang') || this.translate.getDefaultLang()
-    );
-  }
+    private messageService: MessageService,
+    private languageService: LanguageService
+  ) {}
 
   ngOnInit(): void {
+    this.translate.use(this.languageService.currentLanguage);
+    this.languageService.currentLanguageSubject.subscribe((lang) => {
+      this.translate.use(lang);
+    });
+
     this.subscription.add(
       this.route.paramMap
         .pipe(

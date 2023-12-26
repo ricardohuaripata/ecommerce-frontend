@@ -3,6 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { Cart } from 'src/app/core/interfaces/cart';
 import { CartService } from 'src/app/core/services/cart.service';
+import { LanguageService } from 'src/app/core/services/language.service';
 
 @Component({
   selector: 'app-shopping-cart-page',
@@ -16,7 +17,8 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private translate: TranslateService,
-    private cartService: CartService
+    private cartService: CartService,
+    private languageService: LanguageService
   ) {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('es');
@@ -26,6 +28,11 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.translate.use(this.languageService.currentLanguage);
+    this.languageService.currentLanguageSubject.subscribe((lang) => {
+      this.translate.use(lang);
+    });
+
     const cartId = localStorage.getItem('cart_id');
 
     if (cartId) {

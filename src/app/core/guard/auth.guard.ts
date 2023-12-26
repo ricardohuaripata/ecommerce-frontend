@@ -7,14 +7,12 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  private jwtService = new JwtHelperService();
 
   constructor(private router: Router, private authService: AuthService) {}
 
