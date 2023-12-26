@@ -46,7 +46,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
           Validators.minLength(8),
           this.passwordFormatValidator,
         ],
-      ]
+      ],
     });
   }
   ngOnInit(): void {}
@@ -102,7 +102,9 @@ export class LoginPageComponent implements OnInit, OnDestroy {
         next: (response: any) => {
           localStorage.setItem('auth_token', response.headers.get('Jwt-Token'));
 
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/account').then(() => {
+            location.reload();
+          });
         },
         error: (event) => {
           this.form.get('password')?.reset();

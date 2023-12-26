@@ -6,6 +6,10 @@
   "title.register": "Register",
   "title.logout": "Logout",
   "title.user.cart": "Your cart",
+  "title.user.account": "Hi",
+  "title.account.orders": "My orders",
+  "title.account.details": "Personal details",
+  "title.account.changePassword": "Change password",
   "label.rights": "©2023. All rights reserved",
   "label.email": "Email",
   "label.password": "Password",
@@ -33,5 +37,9 @@
   "label.validation.lastnameRequired": "Lastname is required",
   "label.showPassword": "Show",
   "label.incorrectCredentials": "Invalid login credentials provided.",
+  "label.account.orders": "Track your orders here.",
+  "label.account.details": "Edit your personal details such as email address and password here.",
+  "label.account.changePassword": "Change your password here.",
+
   "message.success.signup": "Successfully registered, now please sign in"
 }

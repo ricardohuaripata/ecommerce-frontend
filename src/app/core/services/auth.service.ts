@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
@@ -9,6 +10,7 @@ import { environment } from 'src/environments/environment.development';
 export class AuthService {
   private API_URL: string;
   private ENDPOINT: string;
+  private jwtService = new JwtHelperService();
 
   constructor(private http: HttpClient) {
     this.API_URL = environment.API_URL;
@@ -16,10 +18,34 @@ export class AuthService {
   }
 
   login(body: any): Observable<any> {
-    return this.http.post<any>(this.API_URL + this.ENDPOINT + '/login', body, { observe: 'response' });
+    return this.http.post<any>(this.API_URL + this.ENDPOINT + '/login', body, {
+      observe: 'response',
+    });
   }
 
   register(body: any): Observable<any> {
     return this.http.post<any>(this.API_URL + this.ENDPOINT + '/signup', body);
+  }
+
+  validateTokenFromCache(): boolean {
+    const jwtToken = localStorage.getItem('auth_token');
+
+    if (jwtToken && jwtToken !== '') {
+      try {
+        const decodedToken = this.jwtService.decodeToken(jwtToken);
+
+        if (
+          decodedToken &&
+          decodedToken.sub &&
+          !this.jwtService.isTokenExpired(jwtToken)
+        ) {
+          return true;
+        }
+      } catch (error) {
+        localStorage.removeItem('auth_token');
+        return false;
+      }
+    }
+    return false;
   }
 }

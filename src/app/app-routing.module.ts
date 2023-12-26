@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundPageComponent } from './modules/home/pages/not-found-page/not-found-page.component';
+import { AuthGuard } from './core/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
   {
     path: 'shopping-cart',
     loadChildren: () => import(`./modules/shopping-cart/shopping-cart.module`).then(m => m.ShoppingCartModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import(`./modules/user-profile/user-profile.module`).then(m => m.UserProfileModule), canActivate: [AuthGuard]
   },
   {
     path: '**',

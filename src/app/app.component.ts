@@ -12,9 +12,9 @@ export class AppComponent implements OnInit {
   constructor(private translate: TranslateService) {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('es');
-    this.translate.use(sessionStorage.getItem('lang') || this.translate.getDefaultLang());
+    this.translate.use(
+      sessionStorage.getItem('lang') || this.translate.getDefaultLang()
+    );
   }
-  ngOnInit(): void {
-    console.log('hola brooo');
-  }
+  ngOnInit(): void {}
 }

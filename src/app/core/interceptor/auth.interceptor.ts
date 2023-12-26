@@ -9,29 +9,33 @@ import {
 
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
-import { ErrorService } from 'src/app/shared/services/error.service';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router, private errorService: ErrorService) {}
+  private host = environment.API_URL;
+
+  constructor(private router: Router) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const jwtToken = localStorage.getItem('auth_token');
+    if (request.url.includes(`${this.host}/api/v1/user/account`)) {
+      const jwtToken = localStorage.getItem('auth_token');
 
-    if (jwtToken) {
-      console.log('Interceptando el token para la peticion, Token: ' + jwtToken);
-      request = request.clone({
-        setHeaders: { Authorization: 'Bearer ' + jwtToken },
-      });
+      if (jwtToken) {
+        console.log('Interceptando el token para la peticion');
+        request = request.clone({
+          setHeaders: { Authorization: 'Bearer ' + jwtToken },
+        });
+      }
     }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 || error.status === 403) {
-          this.errorService.msgError(error);
+          localStorage.removeItem('auth_token');
           this.router.navigate(['/auth/login']);
         }
         return throwError(() => error);
