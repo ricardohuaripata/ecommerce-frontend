@@ -33,6 +33,9 @@
   "label.validation.invalidPassword": "The password must be at least 8 characters, one lowercase letter, one uppercase letter, one number, and one special character",
   "label.validation.passwordRequired": "Password is required",
   "label.validation.passwordConfirmationRequired": "Password confirmation is required",
+  "label.validation.oldPasswordRequired": "Old password is required",
+  "label.validation.newPasswordRequired": "New password is required",
+  "label.validation.newPasswordConfirmationRequired": "New password confirmation is required",
   "label.validation.firstnameRequired": "Firstname is required",
   "label.validation.lastnameRequired": "Lastname is required",
   "label.showPassword": "Show",
@@ -40,6 +43,11 @@
   "label.account.orders": "Track your orders here.",
   "label.account.details": "Edit your personal details such as email address and password here.",
   "label.account.changePassword": "Change your password here.",
+  "label.submitRequest": "Submit request",
+  "label.newPassword": "New password",
+  "label.oldPassword": "Old password",
+  "label.newPasswordRepeat": "Repeat new password",
+  "message.success.signup": "Successfully registered, now please sign in",
+  "message.success.passwordChanged": "Password updated successfully"
 
-  "message.success.signup": "Successfully registered, now please sign in"
 }

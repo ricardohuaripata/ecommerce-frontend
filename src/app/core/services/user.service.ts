@@ -27,4 +27,28 @@ export class UserService {
   updateLoggedUser(user: User | undefined): void {
     this.loggedUserSource.next(user);
   }
+
+  updateUserPassword(body: any): Observable<any> {
+    return this.http.patch<any>(
+      this.API_URL + this.ENDPOINT + '/account/password',
+      body
+    );
+  }
+
+  updateUserDetails(body: any): Observable<any> {
+    return this.http.patch<any>(
+      this.API_URL + this.ENDPOINT + '/account/details',
+      body
+    );
+  }
+
+  updateShippingAddress(shippingAddressId: string, body: any): Observable<any> {
+    return this.http.patch<any>(
+      this.API_URL +
+        this.ENDPOINT +
+        '/account/shipping-address/' +
+        shippingAddressId,
+      body
+    );
+  }
 }

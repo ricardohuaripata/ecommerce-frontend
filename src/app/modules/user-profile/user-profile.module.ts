@@ -6,6 +6,9 @@ import { UserProfilePageComponent } from './pages/user-profile-page/user-profile
 import { UserOrdersPageComponent } from './pages/user-orders-page/user-orders-page.component';
 import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { UserDetailsPageComponent } from './pages/user-details-page/user-details-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+
 // multilenguaje
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
@@ -21,6 +24,9 @@ import { HttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     UserProfileRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

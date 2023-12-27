@@ -33,6 +33,9 @@
   "label.validation.invalidPassword": "La contraseña debe tener al menos 8 caracteres, una letra minúscula, una letra mayúscula, un número y un carácter especial",
   "label.validation.passwordRequired": "La contraseña es requerida",
   "label.validation.passwordConfirmationRequired": "La confirmación de contraseña es requerida",
+  "label.validation.oldPasswordRequired": "La contraseña anterior es requerida",
+  "label.validation.newPasswordRequired": "La nueva contraseña es requerida",
+  "label.validation.newPasswordConfirmationRequired": "La confirmación de la nueva contraseña es requerida",
   "label.validation.firstnameRequired": "El nombre es requerido",
   "label.validation.lastnameRequired": "El apellido es requerido",
   "label.showPassword": "Mostrar",
@@ -40,5 +43,11 @@
   "label.account.orders": "Rastrea tus pedidos aquí.",
   "label.account.details": "Edite aquí sus datos personales, como la dirección de correo electrónico y la contraseña.",
   "label.account.changePassword": "Cambie su contraseña aquí.",
-  "message.success.signup": "Registrado exitosamente, ahora por favor inicie sesión"
+  "label.submitRequest": "Enviar petición",
+  "label.newPassword": "Nueva contraseña",
+  "label.oldPassword": "Contraseña anterior",
+  "label.newPasswordRepeat": "Repetir nueva contraseña",
+  "message.success.signup": "Registrado exitosamente, ahora por favor inicie sesión",
+  "message.success.passwordChanged": "Contraseña actualizada exitosamente"
+
 }
