@@ -22,9 +22,11 @@ export class ProductPageComponent implements OnInit, OnDestroy {
   targetColorProductVariant?: ColorProductVariant;
   colorProductVariantList: ColorProductVariant[] = [];
   sizeColorProductVariantList: SizeColorProductVariant[] = [];
-  disableAddToCartButton = true;
-  buttonCooldown = false;
+  disableAddToCartButton: boolean = true;
+  buttonCooldown: boolean = false;
+  millisecondsTimeCooldown: number = 250;
   selectedSizeVariant?: SizeColorProductVariant; // variante talla-color seleccionado
+  loading: boolean = true;
 
   private subscription: Subscription = new Subscription();
 
@@ -102,6 +104,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
                       console.log(this.sizeColorProductVariantList);
                       console.log(this.targetColorProductVariant);
+                      this.loading = false;
+
                     },
                     (error) => {
                       this.router.navigate(['/']);
@@ -141,7 +145,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
 
               setTimeout(() => {
                 this.buttonCooldown = false;
-              }, 1000);
+              }, this.millisecondsTimeCooldown);
             },
             (event) => {
               if (
@@ -156,7 +160,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                 });
                 setTimeout(() => {
                   this.buttonCooldown = false;
-                }, 1000);
+                }, this.millisecondsTimeCooldown);
               }
             }
           )
@@ -183,7 +187,7 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                   });
                   setTimeout(() => {
                     this.buttonCooldown = false;
-                  }, 1000);
+                  }, this.millisecondsTimeCooldown);
                 },
                 (error) => {}
               )

@@ -13,6 +13,7 @@ import { LanguageService } from 'src/app/core/services/language.service';
 export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   targetCart?: Cart;
   loading: boolean = true;
+  processing: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -68,10 +69,15 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   }
 
   removeFromCart(cartItemId: string): void {
+    if (this.processing) {
+      return;
+    }
+    this.processing = true;
     this.subscription.add(
       this.cartService.deleteCartItem(cartItemId).subscribe(
         (data: any) => {
           this.targetCart = data;
+          this.processing = false;
         },
         (error) => {}
       )
@@ -79,10 +85,15 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
   }
 
   clearCart(): void {
+    if (this.processing) {
+      return;
+    }
+    this.processing = true;
     this.subscription.add(
       this.cartService.clearCart(this.targetCart!.id).subscribe(
         (data: any) => {
           this.targetCart = data;
+          this.processing = false;
         },
         (error) => {}
       )
