@@ -24,6 +24,12 @@ export class UserService {
     );
   }
 
+  getUserShippingAddresses(): Observable<any> {
+    return this.http.get<any>(
+      this.API_URL + this.ENDPOINT + '/account/shipping-address'
+    );
+  }
+
   updateLoggedUser(user: User | undefined): void {
     this.loggedUserSource.next(user);
   }
@@ -49,6 +55,22 @@ export class UserService {
         '/account/shipping-address/' +
         shippingAddressId,
       body
+    );
+  }
+
+  createShippingAddress(body: any): Observable<any> {
+    return this.http.post<any>(
+      this.API_URL + this.ENDPOINT + '/account/shipping-address',
+      body
+    );
+  }
+
+  deleteShippingAddress(shippingAddressId: string): Observable<any> {
+    return this.http.delete<any>(
+      this.API_URL +
+        this.ENDPOINT +
+        '/account/shipping-address/' +
+        shippingAddressId
     );
   }
 }

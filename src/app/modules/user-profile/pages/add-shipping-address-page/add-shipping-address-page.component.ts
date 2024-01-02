@@ -1,27 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs';
+
 import { LanguageService } from 'src/app/core/services/language.service';
 import { UserService } from 'src/app/core/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-change-password-page',
-  templateUrl: './change-password-page.component.html',
-  styleUrls: ['./change-password-page.component.scss'],
+  selector: 'app-add-shipping-address-page',
+  templateUrl: './add-shipping-address-page.component.html',
+  styleUrls: ['./add-shipping-address-page.component.scss'],
   providers: [MessageService],
 })
-export class ChangePasswordPageComponent implements OnInit, OnDestroy {
-  showOldPassword: boolean = false;
-  showNewPassword: boolean = false;
+export class AddShippingAddressPageComponent implements OnInit, OnDestroy {
   submited: boolean = false;
   form: FormGroup;
   disableForm: boolean = false;
@@ -36,49 +29,28 @@ export class ChangePasswordPageComponent implements OnInit, OnDestroy {
     private languageService: LanguageService
   ) {
     this.form = this.fb.group({
-      oldPassword: [
+      firstName: [
         '',
         [
           Validators.required,
-          Validators.minLength(8),
-          this.passwordFormatValidator,
+          Validators.minLength(2),
+          Validators.maxLength(64),
         ],
       ],
-      password: [
+      lastName: [
         '',
         [
           Validators.required,
-          Validators.minLength(8),
-          this.passwordFormatValidator,
+          Validators.minLength(2),
+          Validators.maxLength(64),
         ],
       ],
-      passwordRepeat: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(8),
-          this.passwordFormatValidator,
-        ],
-      ],
+      country: ['', [Validators.required, Validators.maxLength(64)]],
+      city: ['', [Validators.required, Validators.maxLength(64)]],
+      postalCode: ['', [Validators.required, Validators.maxLength(10)]],
+      address: ['', [Validators.required, Validators.maxLength(512)]],
+      contactPhone: ['', [Validators.required, Validators.maxLength(20)]],
     });
-  }
-
-  passwordFormatValidator(
-    control: AbstractControl
-  ): { [key: string]: boolean } | null {
-    const password = control.value;
-
-    // Verifica al menos una letra minúscula, una letra mayúscula, un número y un carácter especial
-    if (
-      !/(?=.*[a-z])/.test(password) ||
-      !/(?=.*[A-Z])/.test(password) ||
-      !/(?=.*\d)/.test(password) ||
-      !/(?=.*[!@#$%^&*()\-_=+{};:,<.>ยง?\\|[\]\/~`"'])/.test(password)
-    ) {
-      return { invalidPasswordFormat: true };
-    }
-
-    return null;
   }
 
   ngOnInit(): void {
@@ -88,16 +60,9 @@ export class ChangePasswordPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  toggleOldPasswordVisibility() {
-    this.showOldPassword = !this.showOldPassword;
-  }
-
-  toggleNewPasswordVisibility() {
-    this.showNewPassword = !this.showNewPassword;
-  }
-
-  changePassword() {
+  addShippingAddress(): void {
     this.submited = true;
+
     if (this.form.invalid) {
       return;
     }
@@ -105,26 +70,19 @@ export class ChangePasswordPageComponent implements OnInit, OnDestroy {
     this.disableForm = true;
 
     const body: any = {
-      oldPassword: this.form.value.oldPassword,
-      password: this.form.value.password,
-      passwordRepeat: this.form.value.passwordRepeat,
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      country: this.form.value.country,
+      city: this.form.value.city,
+      postalCode: this.form.value.postalCode,
+      address: this.form.value.address,
+      contactPhone: this.form.value.contactPhone,
     };
 
     this.subscription.add(
-      this.userService.updateUserPassword(body).subscribe({
+      this.userService.createShippingAddress(body).subscribe({
         next: (response: any) => {
-          const translatedMessage = this.translate.instant(
-            'message.success.passwordChanged'
-          );
-          Swal.fire({
-            icon: 'success',
-            text: translatedMessage,
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            timer: 1500,
-          });
-
-          this.router.navigateByUrl('/account');
+          this.router.navigateByUrl('/account/details');
         },
         error: (event) => {
           if (event.error.validationErrors) {
@@ -136,7 +94,6 @@ export class ChangePasswordPageComponent implements OnInit, OnDestroy {
               });
             }
           } else if (event.error.statusCode == 400) {
-            this.form.get('oldPassword')?.reset();
             this.messageService.add({
               severity: 'error',
               detail: event.error.message,
@@ -147,6 +104,7 @@ export class ChangePasswordPageComponent implements OnInit, OnDestroy {
               detail: 'Unexpected error',
             });
           }
+
           this.disableForm = false;
         },
       })

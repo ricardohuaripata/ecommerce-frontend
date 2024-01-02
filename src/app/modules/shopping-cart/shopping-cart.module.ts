@@ -8,10 +8,14 @@ import { ShoppingCartPageComponent } from './pages/shopping-cart-page/shopping-c
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
+import { EmptyCartComponent } from './components/empty-cart/empty-cart.component';
+import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 
 @NgModule({
   declarations: [
-    ShoppingCartPageComponent
+    ShoppingCartPageComponent,
+    EmptyCartComponent,
+    CheckoutPageComponent
   ],
   imports: [
     CommonModule,

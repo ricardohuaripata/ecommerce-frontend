@@ -24,6 +24,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
   showPassword: boolean = false; // Variable para alternar entre mostrar y ocultar la contraseña
   submited: boolean = false;
   form: FormGroup;
+  disableForm: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -94,7 +95,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.form.disable;
+    this.disableForm = true;
 
     const body: any = {
       email: this.form.value.email,
@@ -117,6 +118,7 @@ export class LoginPageComponent implements OnInit, OnDestroy {
             severity: 'error',
             detail: translatedMessage,
           });
+          this.disableForm = false;
         },
       })
     );

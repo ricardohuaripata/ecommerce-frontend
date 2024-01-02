@@ -1,4 +1,4 @@
-<nav class="navbar bg-primary py-4" aria-label="Light offcanvas navbar">
+<nav class="navbar bg-primary" aria-label="Light offcanvas navbar">
     <div class="container-fluid mx-4">
 
         <div class="d-flex justify-content-start">
@@ -10,7 +10,7 @@
 
             <div class="headerLogo_wrapper">
                 <a [routerLink]="['/']">
-                    <span><img src="https://www.ogsbrand.com/images/logo-black.png" alt="Og's" width="64px"
+                    <span><img src="assets/images/brand-logo.png" alt="Og's" width="64px"
                             class="logo-img"></span>
                 </a>
             </div>
@@ -60,28 +60,28 @@
         <div class="offcanvas offcanvas-start bg-primary" tabindex="-1" id="offcanvasNavbarLight"
             aria-labelledby="offcanvasNavbarLightLabel">
             <div class="offcanvas-header mx-4">
-                <a href="/">
-                    <span><img src="https://www.ogsbrand.com/images/logo-black.png" alt="Og's" width="64px"></span>
+                <a [routerLink]="['/']">
+                    <span><img src="assets/images/brand-logo.png" alt="Og's" width="64px"></span>
                 </a>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body mx-4">
                 <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                     <li class="nav-item my-4">
-                        <a class="nav-link fw-bold fs-5" href="/">{{ 'title.home' | translate }}</a>
+                        <a class="nav-link fw-bold fs-5" [routerLink]="['/']">{{ 'title.home' | translate }}</a>
                     </li>
                     <li class="nav-item" *ngFor="let collection of collections">
-                        <a [attr.href]="'/collections/' + collection.slug" class="nav-link fs-6">{{ collection.title
+                        <a [routerLink]="['/collections/', collection.slug]" class="nav-link fs-6">{{ collection.title
                             }}</a>
                     </li>
                     <li class="nav-item mt-4">
-                        <a class="nav-link fw-bold fs-5" href="/shopping-cart">{{ 'title.cart' | translate }}</a>
+                        <a class="nav-link fw-bold fs-5" [routerLink]="['/shopping-cart']">{{ 'title.cart' | translate }}</a>
                     </li>
                     <li *ngIf="!this.loggedUser" class="nav-item mt-2">
-                        <a class="nav-link fw-bold fs-5" href="/auth/login">{{ 'title.login' | translate }}</a>
+                        <a class="nav-link fw-bold fs-5" [routerLink]="['/auth/login']">{{ 'title.login' | translate }}</a>
                     </li>
                     <li *ngIf="!this.loggedUser" class="nav-item mt-2">
-                        <a class="nav-link fw-bold fs-5" href="/auth/register">{{ 'title.register' | translate }}</a>
+                        <a class="nav-link fw-bold fs-5" [routerLink]="['/auth/register']">{{ 'title.register' | translate }}</a>
                     </li>
                     <li *ngIf="this.loggedUser" class="nav-item mt-2">
                         <a class="nav-link fw-bold fs-5 clickable" (click)="this.logout()">{{ 'title.logout' | translate

@@ -1,1 +1,101 @@
-<p>user-details-page works!</p>
+<p-toast position="bottom-center" [breakpoints]="{'920px': {width: '90%'}}"></p-toast>
+
+<main *ngIf="!loading">
+    <div class="container my-5" style="max-width: 950px;">
+        <section class="mx-2">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form [formGroup]="form" (ngSubmit)="updateUserDetails()">
+                        <h2 class="header-title mb-5">{{ 'title.account.details' | translate }}</h2>
+
+                        <!-- Firstname input -->
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="firstName" class="form-control" id="inputFirstname"
+                                placeholder
+                                [ngClass]="{ 'is-invalid': form.get('firstName')!.invalid && this.submited }">
+                            <label for="inputFirstname">{{ 'label.firstname' | translate }}</label>
+                            <div *ngIf="form.get('firstName')!.hasError('required')" class="invalid-feedback">
+                                {{ 'label.validation.firstnameRequired' | translate }}
+                            </div>
+                            <div *ngIf="form.get('firstName')!.hasError('required') == false && (form.get('firstName')!.hasError('minlength') || form.get('firstName')!.hasError('maxlength'))"
+                                class="invalid-feedback">
+                                {{ 'label.validation.firstnameLength' | translate }}
+                            </div>
+                        </div>
+
+                        <!-- Lastname input -->
+                        <div class="form-floating mb-3">
+                            <input type="text" formControlName="lastName" class="form-control" id="inputLastname"
+                                placeholder
+                                [ngClass]="{ 'is-invalid': form.get('lastName')!.invalid && this.submited }">
+                            <label for="inputLastname">{{ 'label.lastname' | translate }}</label>
+                            <div *ngIf="form.get('lastName')!.hasError('required')" class="invalid-feedback">
+                                {{ 'label.validation.lastnameRequired' | translate }}
+                            </div>
+                            <div *ngIf="form.get('lastName')!.hasError('required') == false && (form.get('lastName')!.hasError('minlength') || form.get('lastName')!.hasError('maxlength'))"
+                                class="invalid-feedback">
+                                {{ 'label.validation.lastnameLength' | translate }}
+                            </div>
+                        </div>
+
+                        <!-- Submit button -->
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg fw-bold" type="submit" [disabled]="buttonCooldown">
+
+                                <span *ngIf="!buttonCooldown">
+                                    {{ 'label.saveChanges' | translate }}
+                                </span>
+                                <span *ngIf="buttonCooldown" class="spinner-border spinner-border-sm me-2" role="status"
+                                    aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="container my-5" style="max-width: 1450px;">
+        <section class="mx-2">
+            <div class="row mt-5">
+                <h2 class="fs-4 fw-bold mb-4 text-center">{{ 'label.shippingAddresses' | translate }}</h2>
+
+                <div class="text-center mb-4">
+                    <button class="btn btn-outline-primary fw-semibold" [routerLink]="['/account/shipping-address']">{{
+                        'label.addShippingAddress' | translate
+                        }}</button>
+                </div>
+
+                <div *ngIf="!loading && this.shippingAddressList.length == 0" class="text-center">
+                    <p>{{ 'label.noShippingAddresses' | translate }}
+                    </p>
+                </div>
+
+                <div *ngFor="let shippingAddress of this.shippingAddressList" class="col-md-4 mb-4">
+                    <div class="card rounded-0">
+                        <div class="card-body">
+                            <p class="card-title">{{ shippingAddress.firstName }} {{ shippingAddress.lastName }}</p>
+                            <p class="card-text">{{ shippingAddress.address }} - {{ shippingAddress.city }}, {{
+                                shippingAddress.postalCode }},
+                                {{ shippingAddress.country }}</p>
+                            <p class="card-text">{{ shippingAddress.contactPhone }}</p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-outline-primary btn-sm fw-semibold"
+                                    (click)="deleteShippingAddress(shippingAddress.id)">{{ 'label.delete' | translate
+                                    }}</button>
+                                <button class="btn btn-outline-primary btn-sm fw-semibold"
+                                    [routerLink]="['/account/shipping-address', shippingAddress.id]">{{ 'label.edit' |
+                                    translate
+                                    }}</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>

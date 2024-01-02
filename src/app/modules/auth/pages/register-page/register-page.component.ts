@@ -24,6 +24,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
   showPassword: boolean = false; // Variable para alternar entre mostrar y ocultar la contraseña
   submited: boolean = false;
   form: FormGroup;
+  disableForm: boolean = false;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -35,8 +36,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
     private languageService: LanguageService
   ) {
     this.form = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(64)]],
       email: ['', [Validators.required, this.emailValidator]],
       password: [
         '',
@@ -102,7 +103,7 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
       return;
     }
 
-    this.form.disable;
+    this.disableForm = true;
 
     const body: any = {
       firstName: this.form.value.firstName,
@@ -147,6 +148,8 @@ export class RegisterPageComponent implements OnInit, OnDestroy {
               detail: 'Unexpected error',
             });
           }
+          this.disableForm = false;
+
         },
       })
     );

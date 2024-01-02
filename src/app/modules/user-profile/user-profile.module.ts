@@ -13,6 +13,8 @@ import { ToastModule } from 'primeng/toast';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
+import { AddShippingAddressPageComponent } from './pages/add-shipping-address-page/add-shipping-address-page.component';
+import { EditShippingAddressPageComponent } from './pages/edit-shipping-address-page/edit-shipping-address-page.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { HttpClient } from '@angular/common/http';
     UserOrdersPageComponent,
     ChangePasswordPageComponent,
     UserDetailsPageComponent,
+    AddShippingAddressPageComponent,
+    EditShippingAddressPageComponent,
   ],
   imports: [
     CommonModule,

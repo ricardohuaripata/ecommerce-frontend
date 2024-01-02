@@ -1,0 +1,121 @@
+<p-toast position="bottom-center" [breakpoints]="{'920px': {width: '90%'}}"></p-toast>
+
+<main *ngIf="!loading" class="container my-5">
+    <section class="mx-2">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form [formGroup]="form" (ngSubmit)="editShippingAddress()">
+                    <h2 class="header-title mb-5">{{ 'label.editShippingAddress' | translate }}</h2>
+
+                    <!-- Firstname input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="firstName" class="form-control" id="inputFirstname"
+                            placeholder [ngClass]="{ 'is-invalid': form.get('firstName')!.invalid && this.submited }">
+                        <label for="inputFirstname">{{ 'label.firstname' | translate }}</label>
+                        <div *ngIf="form.get('firstName')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.firstnameRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('firstName')!.hasError('required') == false && (form.get('firstName')!.hasError('minlength') || form.get('firstName')!.hasError('maxlength'))"
+                            class="invalid-feedback">
+                            {{ 'label.validation.firstnameLength' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Lastname input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="lastName" class="form-control" id="inputLastname"
+                            placeholder [ngClass]="{ 'is-invalid': form.get('lastName')!.invalid && this.submited }">
+                        <label for="inputLastname">{{ 'label.lastname' | translate }}</label>
+                        <div *ngIf="form.get('lastName')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.lastnameRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('lastName')!.hasError('required') == false && (form.get('lastName')!.hasError('minlength') || form.get('lastName')!.hasError('maxlength'))"
+                            class="invalid-feedback">
+                            {{ 'label.validation.lastnameLength' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Country input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="country" class="form-control" id="inputCountry" placeholder
+                            [ngClass]="{ 'is-invalid': form.get('country')!.invalid && this.submited }">
+                        <label for="inputCountry">{{ 'label.country' | translate }}</label>
+                        <div *ngIf="form.get('country')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.fieldRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('country')!.hasError('required') == false && form.get('country')!.hasError('maxlength')"
+                            class="invalid-feedback">
+                            {{ 'label.validation.maxLength64' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- City input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="city" class="form-control" id="inputCity" placeholder
+                            [ngClass]="{ 'is-invalid': form.get('city')!.invalid && this.submited }">
+                        <label for="inputCity">{{ 'label.city' | translate }}</label>
+                        <div *ngIf="form.get('city')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.fieldRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('city')!.hasError('required') == false && form.get('city')!.hasError('maxlength')"
+                            class="invalid-feedback">
+                            {{ 'label.validation.maxLength64' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Postal code input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="postalCode" class="form-control" id="inputPostalCode"
+                            placeholder [ngClass]="{ 'is-invalid': form.get('postalCode')!.invalid && this.submited }">
+                        <label for="inputPostalCode">{{ 'label.postalCode' | translate }}</label>
+                        <div *ngIf="form.get('postalCode')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.fieldRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('postalCode')!.hasError('required') == false && form.get('postalCode')!.hasError('maxlength')"
+                            class="invalid-feedback">
+                            {{ 'label.validation.maxLength64' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Address input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="address" class="form-control" id="inputAddress" placeholder
+                            [ngClass]="{ 'is-invalid': form.get('address')!.invalid && this.submited }">
+
+                        <label for="inputAddress">{{ 'label.address' | translate }}</label>
+                        <div *ngIf="form.get('address')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.fieldRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('address')!.hasError('required') == false && form.get('address')!.hasError('maxlength')"
+                            class="invalid-feedback">
+                            {{ 'label.validation.maxLength512' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Contact phone input -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="contactPhone" class="form-control" id="inputContactPhone"
+                            placeholder
+                            [ngClass]="{ 'is-invalid': form.get('contactPhone')!.invalid && this.submited }">
+                        <label for="inputContactPhone">{{ 'label.contactPhone' | translate }}</label>
+                        <div *ngIf="form.get('contactPhone')!.hasError('required')" class="invalid-feedback">
+                            {{ 'label.validation.fieldRequired' | translate }}
+                        </div>
+                        <div *ngIf="form.get('contactPhone')!.hasError('required') == false && form.get('contactPhone')!.hasError('maxlength')"
+                            class="invalid-feedback">
+                            {{ 'label.validation.contactPhoneLength' | translate }}
+                        </div>
+                    </div>
+
+                    <!-- Submit button -->
+                    <div class="d-grid">
+                        <button class="btn btn-primary btn-lg fw-bold" type="submit" [disabled]="this.disableForm">
+                            {{ 'label.editShippingAddress' | translate }}</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+
+</main>

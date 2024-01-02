@@ -20,13 +20,7 @@ export class ShoppingCartPageComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private cartService: CartService,
     private languageService: LanguageService
-  ) {
-    this.translate.addLangs(['es', 'en']);
-    this.translate.setDefaultLang('es');
-    this.translate.use(
-      sessionStorage.getItem('lang') || this.translate.getDefaultLang()
-    );
-  }
+  ) {}
 
   ngOnInit(): void {
     this.translate.use(this.languageService.currentLanguage);
