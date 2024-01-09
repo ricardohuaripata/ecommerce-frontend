@@ -39,6 +39,8 @@ body {
 
 .form-control {
   border-radius: 0; /* Bordes rectos */
+  border: 0;
+  border-bottom: 1px solid #b3b3b3;
 }
 
 .toggleVisibilityPassword {

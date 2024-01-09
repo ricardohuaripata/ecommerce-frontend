@@ -10,16 +10,21 @@ import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 import { EmptyCartComponent } from './components/empty-cart/empty-cart.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
     ShoppingCartPageComponent,
     EmptyCartComponent,
-    CheckoutPageComponent
+    CheckoutPageComponent,
   ],
   imports: [
     CommonModule,
     ShoppingCartRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    ToastModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -27,6 +32,6 @@ import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.compo
         deps: [HttpClient],
       },
     }),
-  ]
+  ],
 })
-export class ShoppingCartModule { }
+export class ShoppingCartModule {}

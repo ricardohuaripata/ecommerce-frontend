@@ -6,6 +6,7 @@
   "title.register": "Register",
   "title.logout": "Logout",
   "title.user.cart": "Your cart",
+  "title.user.cart.checkout": "Checkout",
   "title.user.account": "Hi,",
   "title.account.orders": "My orders",
   "title.account.details": "Personal details",
@@ -49,6 +50,9 @@
   "label.validation.maxLength64": "Maximum length for this field is 64",
   "label.validation.maxLength512": "Maximum length for this field is 512",
   "label.validation.contactPhoneLength": "Maximum length for contact phone is 20",
+  "label.validation.invalidCardNumber": "Card number is not valid",
+  "label.validation.invalidExpDate": "Expiration date is not valid",
+  "label.validation.invalidCvc": "CVC is not valid",
   "label.showPassword": "Show",
   "label.incorrectCredentials": "Invalid login credentials provided.",
   "label.account.orders": "Track your orders here.",
@@ -61,14 +65,21 @@
   "label.continueShopping": "Continue shopping",
   "label.saveChanges": "Save changes",
   "label.shippingAddresses": "Saved shipping addresses",
+  "label.deliveryAddress": "Delivery address",
   "label.delete": "Delete",
   "label.edit": "Edit",
   "label.noShippingAddresses": "You don't have any saved shipping address.",
   "label.addShippingAddress": "Add shipping address",
   "label.editShippingAddress": "Edit shipping address",
+  "label.pay": "Pay",
+  "label.cardCredentials": "Card details",
+  "label.cardCredentials.cardNumber": "Card number",
+  "label.cardCredentials.expDate": "Expiration",
+  "label.cardCredentials.cvc": "CVC",
   "message.success.signup": "Successfully registered, now please sign in",
   "message.success.passwordChanged": "Password updated successfully",
-  "message.success.userDetailsChanged": "Details updated successfully"
+  "message.success.userDetailsChanged": "Details updated successfully",
+  "message.success.orderCreated": "Order created successfully"
 
 
 }

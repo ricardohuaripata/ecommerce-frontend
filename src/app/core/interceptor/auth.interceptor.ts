@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    if (request.url.includes(`${this.host}/api/v1/user/account`)) {
+    if (request.url.includes(`${this.host}/api/v1/user/account`) || request.url.includes(`${this.host}/api/v1/order`)) {
       const jwtToken = localStorage.getItem('auth_token');
 
       if (jwtToken) {

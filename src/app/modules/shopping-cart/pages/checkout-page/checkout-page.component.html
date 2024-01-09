@@ -1,1 +1,272 @@
-<p>checkout-page works!</p>
+<p-toast position="bottom-center" [breakpoints]="{'920px': {width: '90%'}}"></p-toast>
+
+<main class="container my-5">
+    <section class="mx-2">
+
+        <app-empty-cart
+            *ngIf="!loading && (this.targetCart?.cartItems == null || targetCart?.cartItems!.length == 0)"></app-empty-cart>
+
+        <div *ngIf="!loading && targetCart?.cartItems!.length > 0" class="row">
+
+            <h2 class="header-title mb-5"> {{ 'title.user.cart.checkout' | translate }} </h2>
+
+            <!-- Primera columna -->
+            <div class="col-md-8">
+                <h2 class="fs-4 fw-bold mb-4">{{ 'label.deliveryAddress' | translate }}</h2>
+
+                <div class="row mb-4">
+                    <div *ngFor="let shippingAddress of this.shippingAddressList" class="col-md-12 mb-2 clickable"
+                        (click)="autocompleteAddressForm(shippingAddress)">
+                        <div class="card"
+                            [class.selected-shipping-address]="shippingAddress.id === this.selectedShippindAddress?.id">
+                            <div class="card-body">
+                                <p class="card-title">{{ shippingAddress.firstName }} {{ shippingAddress.lastName }}</p>
+                                <p class="card-text">{{ shippingAddress.address }} - {{ shippingAddress.city }}, {{
+                                    shippingAddress.postalCode }},
+                                    {{ shippingAddress.country }}</p>
+                                <p class="card-text">{{ shippingAddress.contactPhone }}</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form [formGroup]="form">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Firstname input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="firstName" class="form-control" id="inputFirstname"
+                                    placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('firstName')!.invalid && this.submited }">
+                                <label for="inputFirstname">{{ 'label.firstname' | translate }}</label>
+                                <div *ngIf="form.get('firstName')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.firstnameRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('firstName')!.hasError('required') == false && (form.get('firstName')!.hasError('minlength') || form.get('firstName')!.hasError('maxlength'))"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.firstnameLength' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Lastname input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="lastName" class="form-control" id="inputLastname"
+                                    placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('lastName')!.invalid && this.submited }">
+                                <label for="inputLastname">{{ 'label.lastname' | translate }}</label>
+                                <div *ngIf="form.get('lastName')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.lastnameRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('lastName')!.hasError('required') == false && (form.get('lastName')!.hasError('minlength') || form.get('lastName')!.hasError('maxlength'))"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.lastnameLength' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Country input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="country" class="form-control" id="inputCountry"
+                                    placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('country')!.invalid && this.submited }">
+                                <label for="inputCountry">{{ 'label.country' | translate }}</label>
+                                <div *ngIf="form.get('country')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('country')!.hasError('required') == false && form.get('country')!.hasError('maxlength')"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.maxLength64' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- City input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="city" class="form-control" id="inputCity"
+                                    placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('city')!.invalid && this.submited }">
+                                <label for="inputCity">{{ 'label.city' | translate }}</label>
+                                <div *ngIf="form.get('city')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('city')!.hasError('required') == false && form.get('city')!.hasError('maxlength')"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.maxLength64' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Postal code input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="postalCode" class="form-control"
+                                    id="inputPostalCode" placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('postalCode')!.invalid && this.submited }">
+                                <label for="inputPostalCode">{{ 'label.postalCode' | translate }}</label>
+                                <div *ngIf="form.get('postalCode')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('postalCode')!.hasError('required') == false && form.get('postalCode')!.hasError('maxlength')"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.maxLength64' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Address input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="address" class="form-control" id="inputAddress"
+                                    placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('address')!.invalid && this.submited }">
+
+                                <label for="inputAddress">{{ 'label.address' | translate }}</label>
+                                <div *ngIf="form.get('address')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('address')!.hasError('required') == false && form.get('address')!.hasError('maxlength')"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.maxLength512' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- Contact phone input -->
+                            <div class="form-floating mb-3">
+                                <input type="text" formControlName="contactPhone" class="form-control"
+                                    id="inputContactPhone" placeholder
+                                    [ngClass]="{ 'is-invalid': form.get('contactPhone')!.invalid && this.submited }">
+                                <label for="inputContactPhone">{{ 'label.contactPhone' | translate }}</label>
+                                <div *ngIf="form.get('contactPhone')!.hasError('required')" class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('contactPhone')!.hasError('required') == false && form.get('contactPhone')!.hasError('maxlength')"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.contactPhoneLength' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <h2 class="fs-4 fw-bold my-4">{{ 'label.cardCredentials' | translate }}</h2>
+
+                        <div class="col-md-6">
+                            <!-- Card number input -->
+                            <div class="form-floating mb-3">
+
+                                <input type="text" class="form-control" placeholder formControlName="cardNumber"
+                                    [ngClass]="{ 'is-invalid': form.get('cardNumber')!.invalid && this.submited }">
+                                <label class="form-label">{{ 'label.cardCredentials.cardNumber' | translate }}</label>
+                                <div *ngIf="form.get('cardNumber')!.hasError('required') && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('cardNumber')!.hasError('required') == false && form.get('cardNumber')!.hasError('invalidCreditCard') && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.invalidCardNumber' | translate }}
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <!-- Expiration date input -->
+                            <div class="form-floating mb-3">
+
+                                <input type="text" class="form-control" placeholder formControlName="expDate"
+                                    [ngClass]="{ 'is-invalid': form.get('expDate')!.invalid && this.submited }">
+                                <label class="form-label">{{ 'label.cardCredentials.expDate' | translate }}</label>
+
+                                <div *ngIf="form.get('expDate')!.hasError('required') && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('expDate')!.hasError('required') == false && (form.get('expDate')!.hasError('invalidExpDate') || form.get('expDate')!.hasError('expiredExpDate')) && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.invalidExpDate' | translate }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <!-- CVC input -->
+                            <div class="form-floating mb-3">
+
+                                <input type="text" class="form-control" placeholder formControlName="cvc"
+                                    [ngClass]="{ 'is-invalid': form.get('cvc')!.invalid && this.submited }">
+                                <label class="form-label">{{ 'label.cardCredentials.cvc' | translate }}</label>
+
+                                <div *ngIf="form.get('cvc')!.hasError('required') && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.fieldRequired' | translate }}
+                                </div>
+                                <div *ngIf="form.get('cvc')!.hasError('required') == false && form.get('cvc')!.hasError('invalidCvc') && this.submited"
+                                    class="invalid-feedback">
+                                    {{ 'label.validation.invalidCvc' | translate }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="card mt-5 rounded-0 border-0">
+                    <div class="card-body">
+
+                        <div *ngFor="let item of this.targetCart?.cartItems" class="mb-4">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a [routerLink]="['/products', item.sizeColorProductVariant.colorProductVariant.product.slug]"
+                                        [queryParams]="{ color: item.sizeColorProductVariant.colorProductVariant.color.slug}">
+                                        <img [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
+                                            alt="{{ item.sizeColorProductVariant.colorProductVariant.product.slug }}"
+                                            class="img-thumbnail border-0 rounded-0" width="100" height="100">
+                                    </a>
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="mt-0 fw-bold fs-5">{{
+                                        item.sizeColorProductVariant.colorProductVariant.product.title + " (" +
+                                        item.sizeColorProductVariant.colorProductVariant.color.title + " / " +
+                                        item.sizeColorProductVariant.size + ")"}}</p>
+                                    <div class="mt-5 d-flex justify-content-between">
+                                        <p class="mb-0">{{ 'label.quantity' | translate }} {{ item.quantity }}</p>
+                                        <p class="mb-0">{{ item.sizeColorProductVariant.colorProductVariant.finalPrice
+                                            }} €</p>
+                                    </div>
+                                </div>
+                                <hr class="mt-4">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Segunda columna -->
+            <div class="col-md-4">
+
+                <div class="card rounded-0 border-0">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="fs-5">Total:</p>
+                            <p class="fs-5">{{ this.targetCart?.totalAmount }} €</p>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-lg fw-bold" (click)="checkout()"
+                                [disabled]="this.disableForm">{{
+                                'label.pay' | translate }}</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+</main>
