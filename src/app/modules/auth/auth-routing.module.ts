@@ -13,10 +13,6 @@ const routes: Routes = [
     path: 'register',
     component: RegisterPageComponent,
     title: "Register - Og's"
-  },
-  {
-    path: '**',
-    redirectTo: '/auth/login'
   }
 ];
 

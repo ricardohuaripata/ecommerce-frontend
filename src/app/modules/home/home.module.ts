@@ -11,11 +11,13 @@ import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.com
 import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { SharedModule } from "../../shared/shared.module";
+import { CategoryItemComponent } from './components/category-item/category-item.component';
 
 @NgModule({
   declarations: [
     NotFoundPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    CategoryItemComponent
   ],
   imports: [
     CommonModule,

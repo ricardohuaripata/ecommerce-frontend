@@ -15,6 +15,8 @@ import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
 import { AddShippingAddressPageComponent } from './pages/add-shipping-address-page/add-shipping-address-page.component';
 import { EditShippingAddressPageComponent } from './pages/edit-shipping-address-page/edit-shipping-address-page.component';
+import { OrderDetailsPageComponent } from './pages/order-details-page/order-details-page.component';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { EditShippingAddressPageComponent } from './pages/edit-shipping-address-
     UserDetailsPageComponent,
     AddShippingAddressPageComponent,
     EditShippingAddressPageComponent,
+    OrderDetailsPageComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +34,7 @@ import { EditShippingAddressPageComponent } from './pages/edit-shipping-address-
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

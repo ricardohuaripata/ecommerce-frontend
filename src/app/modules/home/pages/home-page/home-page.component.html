@@ -2,16 +2,7 @@
     <section class="mx-3">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div *ngFor="let collection of collections">
-                <div class="card h-100 rounded-0 border-0">
-                    <a [routerLink]="['/collections/', collection.slug]">
-                        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="collection.featuredImageUrl" class="card-img-top rounded-0"
-                            alt="{{ collection.title }}" />
-                    </a>
-                    <div class="card-body">
-                        <h4 class="card-title fw-bold">{{ collection.title }}</h4>
-
-                    </div>
-                </div>
+                <app-category-item [category]="collection"></app-category-item>
             </div>
         </div>
     </section>

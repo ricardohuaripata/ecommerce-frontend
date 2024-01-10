@@ -4,6 +4,11 @@
   --brand-main: #ffcc03;
 }
 
+::selection {
+  background-color: black;
+  color: white; /* Para cambiar el color del texto cuando está seleccionado */
+}
+
 $primary: #ffcc03;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
@@ -49,4 +54,14 @@ body {
   right: 0;
   cursor: pointer;
   margin-right: 10px;
+}
+
+.image-loading {
+  opacity: 0; /* Comienza con opacidad 0 para ocultar la imagen */
+  transition: opacity 0.8s ease; /* Transición suave de opacidad */
+}
+
+/* Mostrar la imagen gradualmente al cargar */
+.image-loaded {
+  opacity: 1;
 }

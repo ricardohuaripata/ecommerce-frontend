@@ -1,10 +1,10 @@
 <article class="card h-100 rounded-0 border-0">
     <a [routerLink]="['/products', colorProductVariant.product.slug]"
         [queryParams]="{ color: colorProductVariant.color.slug}">
-        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0"
-            alt="{{ colorProductVariant.product.title }}" />
+        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="colorProductVariant.mainImageUrl" class="card-img-top rounded-0 image-loading"
+            alt="{{ colorProductVariant.product.title }}" (load)="onImageLoad()" [ngClass]="{'image-loaded': imageLoaded}"/>
     </a>
-    <div class="card-body">
+    <div class="card-body" *ngIf="imageLoaded">
         <h4 class="card-title fw-bold">{{ colorProductVariant.product.title }}</h4>
         <p>{{ colorProductVariant.finalPrice }} €</p>
 

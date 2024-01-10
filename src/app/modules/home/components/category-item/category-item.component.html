@@ -1,0 +1,10 @@
+<div class="card h-100 rounded-0 border-0">
+    <a [routerLink]="['/collections/', category.slug]">
+        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="category.featuredImageUrl"
+            class="card-img-top rounded-0 image-loading" alt="{{ category.title }}" (load)="onImageLoad()" [ngClass]="{'image-loaded': imageLoaded}"/>
+    </a>
+    <div class="card-body" *ngIf="imageLoaded">
+        <h4 class="card-title fw-bold">{{ category.title }}</h4>
+
+    </div>
+</div>

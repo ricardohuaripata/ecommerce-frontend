@@ -15,14 +15,18 @@
                             'text-warning': order.status === 'pending',
                             'text-info': order.status === 'sent',
                             'text-success': order.status === 'delivered' }">
-                        <strong>{{'label.order.status' | translate}}</strong> {{ order.status === 'pending' ? ('label.order.status.pending' | translate) : order.status === 'sent' ? ('label.order.status.sent' | translate) : order.status === 'delivered' ? ('label.order.status.delivered' | translate) : order.status }}
+                        <strong>{{'label.order.status' | translate}}</strong> {{ order.status === 'pending' ?
+                        ('label.order.status.pending' | translate) : order.status === 'sent' ?
+                        ('label.order.status.sent' | translate) : order.status === 'delivered' ?
+                        ('label.order.status.delivered' | translate) : order.status }}
                     </p>
                     <p><strong>{{'label.order.orderDate' | translate}}</strong> {{ order.orderDate }}</p>
                     <p><strong>{{'label.order.totalAmount' | translate}}</strong> {{ order.totalAmount }} €</p>
 
                     <div class="row row-cols-3">
                         <div class="col-md-2" *ngFor="let item of this.order?.orderItems">
-                            <img [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
+                            <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'"
+                                [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
                                 alt="{{ item.sizeColorProductVariant.colorProductVariant.product.slug }}"
                                 class="img-thumbnail border-0 rounded-0" width="100" height="100">
 
@@ -30,7 +34,8 @@
                     </div>
 
                     <div class="d-grid mt-4 mb-2">
-                        <button type="button" class="btn btn-outline-primary btn-lg fw-bold" [routerLink]="['/account/orders/', order.id]">{{'label.viewOrder' | translate}}</button>
+                        <button type="button" class="btn btn-primary btn-lg fw-bold"
+                            [routerLink]="['/account/orders/', order.id]">{{'label.viewOrder' | translate}}</button>
                     </div>
                 </li>
             </ul>

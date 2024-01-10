@@ -6,6 +6,7 @@ import { UserDetailsPageComponent } from './pages/user-details-page/user-details
 import { ChangePasswordPageComponent } from './pages/change-password-page/change-password-page.component';
 import { AddShippingAddressPageComponent } from './pages/add-shipping-address-page/add-shipping-address-page.component';
 import { EditShippingAddressPageComponent } from './pages/edit-shipping-address-page/edit-shipping-address-page.component';
+import { OrderDetailsPageComponent } from './pages/order-details-page/order-details-page.component';
 
 const routes: Routes = [
   {
@@ -27,6 +28,11 @@ const routes: Routes = [
     path: 'orders',
     component: UserOrdersPageComponent,
     title: "My Orders - Og's"
+  },
+  {
+    path: 'orders/:orderId',
+    component: OrderDetailsPageComponent,
+    title: "Orders Details - Og's"
   },
   {
     path: 'shipping-address',
