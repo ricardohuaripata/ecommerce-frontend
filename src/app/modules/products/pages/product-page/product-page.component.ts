@@ -84,6 +84,8 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                   this.colorProductVariantList[0];
               }
 
+              document.title = `${this.targetColorProductVariant.product.title} - Og's`;
+
               this.subscription.add(
                 this.productService
                   .getSizeColorProductVariantsByColorProductVariantId(
@@ -103,7 +105,6 @@ export class ProductPageComponent implements OnInit, OnDestroy {
                       }
 
                       console.log(this.sizeColorProductVariantList);
-                      console.log(this.targetColorProductVariant);
                       this.loading = false;
 
                     },

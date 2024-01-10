@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {
     path: '**',
-    component: NotFoundPageComponent
+    component: NotFoundPageComponent,
+    title: 'Error 404'
   }
 ];
 

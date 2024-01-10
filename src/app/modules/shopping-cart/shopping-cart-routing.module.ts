@@ -8,10 +8,12 @@ const routes: Routes = [
   {
     path: '',
     component: ShoppingCartPageComponent,
+    title: "Cart - Og's"
   },
   {
     path: 'checkout',
     component: CheckoutPageComponent,
+    title: "Checkout - Og's",
     canActivate: [AuthGuard],
   },
 ];

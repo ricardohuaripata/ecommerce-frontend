@@ -1,7 +1,7 @@
 <p-toast position="bottom-center" [breakpoints]="{'920px': {width: '90%'}}"></p-toast>
 
 <main class="container my-5">
-    <section class="mx-2">
+    <section class="mx-3">
 
         <app-empty-cart
             *ngIf="!loading && (this.targetCart?.cartItems == null || targetCart?.cartItems!.length == 0)"></app-empty-cart>
@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <h2 class="fs-4 fw-bold mb-4">{{ 'label.deliveryAddress' | translate }}</h2>
 
-                <div class="row mb-4">
+                <div *ngIf="this.shippingAddressList.length > 0" class="row mb-4">
                     <div *ngFor="let shippingAddress of this.shippingAddressList" class="col-md-12 mb-2 clickable"
                         (click)="autocompleteAddressForm(shippingAddress)">
                         <div class="card"

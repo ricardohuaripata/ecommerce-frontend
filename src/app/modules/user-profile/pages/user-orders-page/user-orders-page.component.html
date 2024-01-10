@@ -1,1 +1,41 @@
-<p>user-orders-page works!</p>
+<main class="container my-5">
+    <section class="mx-3">
+        <div *ngIf="!loading">
+            <h2 class="header-title mb-5">{{'title.account.orders' | translate}}
+            </h2>
+
+            <div *ngIf="!orderList || orderList.length === 0">
+                <p>{{'label.noOrders' | translate}}</p>
+            </div>
+
+            <ul class="list-group" *ngIf="orderList && orderList.length > 0">
+                <li class="list-group-item" *ngFor="let order of orderList">
+                    <h5 class="mt-3 mb-3">ID #{{ order.id }}</h5>
+                    <p [ngClass]="{
+                            'text-warning': order.status === 'pending',
+                            'text-info': order.status === 'sent',
+                            'text-success': order.status === 'delivered' }">
+                        <strong>{{'label.order.status' | translate}}</strong> {{ order.status === 'pending' ? ('label.order.status.pending' | translate) : order.status === 'sent' ? ('label.order.status.sent' | translate) : order.status === 'delivered' ? ('label.order.status.delivered' | translate) : order.status }}
+                    </p>
+                    <p><strong>{{'label.order.orderDate' | translate}}</strong> {{ order.orderDate }}</p>
+                    <p><strong>{{'label.order.totalAmount' | translate}}</strong> {{ order.totalAmount }} €</p>
+
+                    <div class="row row-cols-3">
+                        <div class="col-md-2" *ngFor="let item of this.order?.orderItems">
+                            <img [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
+                                alt="{{ item.sizeColorProductVariant.colorProductVariant.product.slug }}"
+                                class="img-thumbnail border-0 rounded-0" width="100" height="100">
+
+                        </div>
+                    </div>
+
+                    <div class="d-grid mt-4 mb-2">
+                        <button type="button" class="btn btn-outline-primary btn-lg fw-bold" [routerLink]="['/account/orders/', order.id]">{{'label.viewOrder' | translate}}</button>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+</main>

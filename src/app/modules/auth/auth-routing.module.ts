@@ -6,11 +6,13 @@ import { RegisterPageComponent } from './pages/register-page/register-page.compo
 const routes: Routes = [
   {
     path: 'login',
-    component: LoginPageComponent
+    component: LoginPageComponent,
+    title: "Login - Og's"
   },
   {
     path: 'register',
-    component: RegisterPageComponent
+    component: RegisterPageComponent,
+    title: "Register - Og's"
   },
   {
     path: '**',

@@ -11,26 +11,32 @@ const routes: Routes = [
   {
     path: '',
     component: UserProfilePageComponent,
+    title: "Account - Og's"
   },
   {
     path: 'details',
     component: UserDetailsPageComponent,
+    title: "Account Details - Og's"
   },
   {
     path: 'change-password',
     component: ChangePasswordPageComponent,
+    title: "Change Password - Og's"
   },
   {
     path: 'orders',
     component: UserOrdersPageComponent,
+    title: "My Orders - Og's"
   },
   {
     path: 'shipping-address',
     component: AddShippingAddressPageComponent,
+    title: "Add Shipping Address - Og's"
   },
   {
     path: 'shipping-address/:shippingAddressId',
     component: EditShippingAddressPageComponent,
+    title: "Edit Shipping Address - Og's"
   },
 ];
 

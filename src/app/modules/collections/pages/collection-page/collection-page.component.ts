@@ -19,7 +19,6 @@ export class CollectionPageComponent implements OnInit, OnDestroy {
   pageQueryParam: number = 1;
   rowsPerPage: number = 8;
   totalRecords: number = 0;
-
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -45,6 +44,8 @@ export class CollectionPageComponent implements OnInit, OnDestroy {
         )
         .subscribe(
           (data: any) => {
+            document.title = `${data.title} - Og's`;
+
             this.targetCategory = data;
 
             const customParams = new HttpParams()
@@ -57,7 +58,7 @@ export class CollectionPageComponent implements OnInit, OnDestroy {
             );
           },
           (error) => {
-            this.router.navigate(['/']);
+            this.router.navigateByUrl('/');
           }
         )
     );
@@ -71,8 +72,6 @@ export class CollectionPageComponent implements OnInit, OnDestroy {
           (data: any) => {
             this.colorProductVariantList = data.content;
             this.totalRecords = data.totalElements;
-
-            console.log(data);
           },
           (error) => {
             this.colorProductVariantList = [];

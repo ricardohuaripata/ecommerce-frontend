@@ -18,4 +18,8 @@ export class OrderService {
   createOrder(body: any): Observable<any> {
     return this.http.post<any>(this.API_URL + this.ENDPOINT, body);
   }
+
+  getUserOrders(): Observable<any> {
+    return this.http.get<any>(this.API_URL + this.ENDPOINT);
+  }
 }

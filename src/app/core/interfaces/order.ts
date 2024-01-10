@@ -13,7 +13,9 @@ export interface Order {
   postalCode: string;
   address: string;
   contactPhone: string;
-  dateCreated: Date;
+  orderDate: Date;
   dateLastModified: Date;
   orderItems: OrderItem[];
+  totalAmount: number;
+  totalQuantity: number;
 }
