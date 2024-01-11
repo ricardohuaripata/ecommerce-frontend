@@ -58,7 +58,7 @@ body {
 
 .image-loading {
   opacity: 0; /* Comienza con opacidad 0 para ocultar la imagen */
-  transition: opacity 0.8s ease; /* Transición suave de opacidad */
+  transition: opacity 0.5s ease; /* Transición suave de opacidad */
 }
 
 /* Mostrar la imagen gradualmente al cargar */
