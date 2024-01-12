@@ -5,6 +5,8 @@
   "title.login": "Login",
   "title.register": "Register",
   "title.logout": "Logout",
+  "title.forgotPassword": "Request password reset",
+  "title.resetPassword": "Reset password",
   "title.user.cart": "Your cart",
   "title.user.cart.checkout": "Checkout",
   "title.user.account": "Hi,",
@@ -88,10 +90,12 @@
   "label.cardCredentials.expDate": "Expiration",
   "label.cardCredentials.cvc": "CVC",
   "label.goBack": "Go back",
+  "label.forgotPassword": "Forgot your password?",
   "message.success.signup": "Successfully registered, now please sign in",
   "message.success.passwordChanged": "Password updated successfully",
   "message.success.userDetailsChanged": "Details updated successfully",
-  "message.success.orderCreated": "Order created successfully"
+  "message.success.orderCreated": "Order created successfully",
+  "message.success.resetPassword": "Password reseted successfully"
 
 
 }

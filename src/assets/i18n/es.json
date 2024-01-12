@@ -5,6 +5,8 @@
   "title.login": "Login",
   "title.register": "Registrarse",
   "title.logout": "Cerrar sesión",
+  "title.forgotPassword": "Recuperación de contraseña",
+  "title.resetPassword": "Restablecer contraseña",
   "title.user.cart": "Su carrito",
   "title.user.cart.checkout": "Pago",
   "title.user.account": "Hola,",
@@ -88,8 +90,10 @@
   "label.cardCredentials.expDate": "Caducidad",
   "label.cardCredentials.cvc": "CVC",
   "label.goBack": "Volver",
+  "label.forgotPassword": "¿Olvidaste tu contraseña?",
   "message.success.signup": "Registrado exitosamente, ahora por favor inicie sesión",
   "message.success.passwordChanged": "Contraseña actualizada exitosamente",
   "message.success.userDetailsChanged": "Información actualizada exitosamente",
-  "message.success.orderCreated": "Pedido creado exitosamente"
+  "message.success.orderCreated": "Pedido creado exitosamente",
+  "message.success.resetPassword": "Contraseña restablecida exitosamente"
 }

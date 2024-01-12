@@ -27,6 +27,20 @@ export class AuthService {
     return this.http.post<any>(this.API_URL + this.ENDPOINT + '/signup', body);
   }
 
+  forgotPassword(body: any): Observable<any> {
+    return this.http.post<any>(
+      this.API_URL + this.ENDPOINT + '/forgot-password',
+      body
+    );
+  }
+
+  resetPassword(resetPasswordToken: string, body: any): Observable<any> {
+    return this.http.post<any>(
+      this.API_URL + this.ENDPOINT + '/reset-password/' + resetPasswordToken,
+      body
+    );
+  }
+
   validateTokenFromCache(): boolean {
     const jwtToken = localStorage.getItem('auth_token');
 

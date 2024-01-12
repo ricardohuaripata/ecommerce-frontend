@@ -11,9 +11,12 @@ import { ToastModule } from 'primeng/toast';
 // multilenguaje
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
+import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
+import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
+import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
 
 @NgModule({
-  declarations: [LoginPageComponent, RegisterPageComponent],
+  declarations: [LoginPageComponent, RegisterPageComponent, ForgotPasswordPageComponent, ResetPasswordPageComponent, VerifyEmailPageComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
