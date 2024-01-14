@@ -8,6 +8,7 @@ import { ChangePasswordPageComponent } from './pages/change-password-page/change
 import { UserDetailsPageComponent } from './pages/user-details-page/user-details-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 // multilenguaje
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -34,6 +35,7 @@ import { SharedModule } from "../../shared/shared.module";
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
+    ConfirmDialogModule,
     SharedModule,
     TranslateModule.forRoot({
       loader: {

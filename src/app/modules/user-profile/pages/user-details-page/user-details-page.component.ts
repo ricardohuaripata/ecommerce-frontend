@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
@@ -13,7 +12,6 @@ import { ShippingAddress } from 'src/app/core/interfaces/shipping-address';
 import { User } from 'src/app/core/interfaces/user';
 import { LanguageService } from 'src/app/core/services/language.service';
 import { UserService } from 'src/app/core/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-details-page',
@@ -36,7 +34,6 @@ export class UserDetailsPageComponent implements OnInit, OnDestroy {
     private translate: TranslateService,
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
     private messageService: MessageService,
     private languageService: LanguageService
   ) {

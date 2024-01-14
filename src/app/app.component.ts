@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {
     this.translate.addLangs(['es', 'en']);
     this.translate.setDefaultLang('es');
-    let lang = sessionStorage.getItem('lang');
+    let lang = localStorage.getItem('lang');
 
     if (lang && this.translate.getLangs().includes(lang)) {
       this.languageService.currentLanguageSubject.next(lang);

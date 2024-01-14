@@ -10,10 +10,12 @@ import { ToastModule } from 'primeng/toast';
 
 // multilenguaje
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+
 import { HttpLoaderFactory } from '../../app.module';
 import { ForgotPasswordPageComponent } from './pages/forgot-password-page/forgot-password-page.component';
 import { ResetPasswordPageComponent } from './pages/reset-password-page/reset-password-page.component';
 import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email-page.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [LoginPageComponent, RegisterPageComponent, ForgotPasswordPageComponent, ResetPasswordPageComponent, VerifyEmailPageComponent],
@@ -23,6 +25,7 @@ import { VerifyEmailPageComponent } from './pages/verify-email-page/verify-email
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
+    ProgressSpinnerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -25,7 +25,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
   submited: boolean = false;
   form: FormGroup;
   disableForm: boolean = false;
-  verifyEmailToken?: string;
+  resetPasswordToken?: string;
   private subscription: Subscription = new Subscription();
 
   constructor(
@@ -83,7 +83,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
 
     this.subscription.add(
       this.route.paramMap.subscribe((params) => {
-        this.verifyEmailToken = params.get('token')!;
+        this.resetPasswordToken = params.get('token')!;
       })
     );
   }
@@ -106,7 +106,7 @@ export class ResetPasswordPageComponent implements OnInit, OnDestroy {
     };
 
     this.subscription.add(
-      this.authService.resetPassword(this.verifyEmailToken!, body).subscribe({
+      this.authService.resetPassword(this.resetPasswordToken!, body).subscribe({
         next: (response: any) => {
           const translatedMessage = this.translate.instant(
             'message.success.resetPassword'

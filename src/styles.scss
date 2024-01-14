@@ -10,10 +10,12 @@
 }
 
 $primary: #ffcc03;
+$secondary: black;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
-@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/themes/mdc-light-indigo/theme.css";
 @import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
 
 body {
   font-family: "Raleway", sans-serif;
@@ -64,4 +66,17 @@ body {
 /* Mostrar la imagen gradualmente al cargar */
 .image-loaded {
   opacity: 1;
+}
+
+.p-progress-spinner-circle {
+  stroke: var(--brand-main) !important;
+}
+
+.p-button {
+  background: #ffcc03 !important;
+  color: black !important;
+}
+
+.p-button:enabled:hover {
+  background: #ffdb4a !important;
 }

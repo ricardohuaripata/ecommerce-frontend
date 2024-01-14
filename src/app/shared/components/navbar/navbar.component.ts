@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   switchLanguage(language: string) {
     this.languageService.setLanguage(language);
     this.languageService.currentLanguageSubject.next(language);
-    sessionStorage.setItem('lang', language);
+    localStorage.setItem('lang', language);
   }
 
   isLanguageActive(language: string): boolean {

@@ -1,3 +1,7 @@
+<p-confirmDialog styleClass="mx-3" defaultFocus="none" acceptLabel="{{'label.confirm.accept' | translate}}"
+    rejectLabel="{{'label.confirm.reject' | translate}}" [transitionOptions]="'0ms'" [closable]=false
+    icon="pi pi-question"></p-confirmDialog>
+
 <main class="container my-5">
     <section class="mx-3">
         <div *ngIf="!loading" class="row justify-content-center">
@@ -23,6 +27,11 @@
                     <hr class="mt-4 mb-5">
                 </div>
 
+                <div *ngIf="!this.authUser?.emailVerified" class="clickable" (click)="requestEmailVerification()">
+                    <h4 class="fw-bold">{{'title.account.verifyEmail' | translate}}</h4>
+                    <p>{{'label.account.verifyEmail' | translate}}</p>
+                    <hr class="mt-4 mb-5">
+                </div>
 
                 <div class="d-grid">
                     <button class="btn btn-primary btn-lg fw-bold" (click)="logout()" type="button">

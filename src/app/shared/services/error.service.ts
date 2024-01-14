@@ -14,7 +14,9 @@ export class ErrorService {
       Swal.fire({
         icon: 'error',
         text: event.error.message,
+        showConfirmButton: false,
         allowOutsideClick: false,
+        timer: 1500,
       });
     } else {
       // mostrar mensaje de errores desconocidos del backend
@@ -22,7 +24,9 @@ export class ErrorService {
         icon: 'error',
         title: 'Oops...',
         text: 'Something went wrong.',
+        showConfirmButton: false,
         allowOutsideClick: false,
+        timer: 1500,
       });
     }
   }

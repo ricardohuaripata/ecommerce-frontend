@@ -73,4 +73,11 @@ export class UserService {
         shippingAddressId
     );
   }
+
+  requestEmailVerification(): Observable<any> {
+    return this.http.post<any>(
+      this.API_URL + this.ENDPOINT + '/account/email-verification',
+      {}
+    );
+  }
 }

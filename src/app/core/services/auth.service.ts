@@ -41,6 +41,13 @@ export class AuthService {
     );
   }
 
+  verifyEmail(verifyEmailToken: string): Observable<any> {
+    return this.http.post<any>(
+      this.API_URL + this.ENDPOINT + '/verify-email/' + verifyEmailToken,
+      {}
+    );
+  }
+
   validateTokenFromCache(): boolean {
     const jwtToken = localStorage.getItem('auth_token');
 
