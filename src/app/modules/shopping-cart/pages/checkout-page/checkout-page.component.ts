@@ -247,7 +247,9 @@ export class CheckoutPageComponent implements OnInit, OnDestroy {
             });
           }
 
-          this.disableForm = false;
+          setTimeout(() => {
+            this.disableForm = false;
+          }, 1000);
         },
       })
     );

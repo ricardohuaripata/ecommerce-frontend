@@ -73,10 +73,14 @@ body {
 }
 
 .p-button {
-  background: #ffcc03 !important;
+  background: var(--brand-main) !important;
   color: black !important;
 }
 
 .p-button:enabled:hover {
   background: #ffdb4a !important;
+}
+
+.p-galleria .p-galleria-item-nav {
+  color: black !important;
 }

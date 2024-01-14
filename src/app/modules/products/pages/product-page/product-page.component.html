@@ -7,34 +7,30 @@
             <div class="col-md-8">
                 <!-- Imágenes del producto -->
 
-                <div id="productCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <ng-container
-                            *ngIf="targetColorProductVariant?.productImageList && targetColorProductVariant?.productImageList!.length > 0; else noImages">
-                            <div class="carousel-item"
-                                *ngFor="let image of targetColorProductVariant?.productImageList; let i = index"
-                                [class.active]="i === 0">
-                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="image.fileUrl" class="d-block w-100" alt="{{ image.fileName }}" />
-                            </div>
-                        </ng-container>
-                        <ng-template #noImages>
-                            <div class="carousel-item active">
-                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="targetColorProductVariant?.mainImageUrl" class="d-block w-100"
-                                    alt="{{ targetColorProductVariant?.mainImageName }}" />
-                            </div>
+                <ng-container
+                    *ngIf="targetColorProductVariant?.productImageList && targetColorProductVariant?.productImageList!.length > 0; else noImages">
+                    <p-galleria [value]="targetColorProductVariant?.productImageList!" [circular]="true"
+                        [showItemNavigators]="true" [showThumbnails]="false" [autoPlay]="true"
+                        [transitionInterval]="3000" [showItemNavigatorsOnHover]="true">
+                        <ng-template pTemplate="item" let-image>
+                            <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'"
+                                [src]="image.fileUrl" class="d-block w-100" alt="{{ image.fileName }}" />
                         </ng-template>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
+                    </p-galleria>
+
+                </ng-container>
+                <ng-template #noImages>
+
+                    <p-galleria [value]="[targetColorProductVariant?.mainImageUrl]" [showItemNavigators]="false"
+                        [showThumbnails]="false">
+                        <ng-template pTemplate="item" let-image>
+                            <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="image"
+                                class="d-block w-100" alt="{{ targetColorProductVariant?.mainImageName }}" />
+                        </ng-template>
+                    </p-galleria>
+
+                </ng-template>
+
             </div>
 
             <!-- Segunda columna -->
@@ -53,7 +49,8 @@
                         <div class="col-md-4" *ngFor="let colorProductVariant of this.colorProductVariantList">
                             <a [routerLink]="['/products', colorProductVariant.product.slug]"
                                 [queryParams]="{ color: colorProductVariant.color.slug}">
-                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'" [src]="colorProductVariant.mainImageUrl" class="img-fluid"
+                                <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'"
+                                    [src]="colorProductVariant.mainImageUrl" class="img-fluid"
                                     alt="{{ colorProductVariant.color.slug }}"
                                     [class.selected-color-variant]="colorProductVariant.id === targetColorProductVariant?.id" />
 

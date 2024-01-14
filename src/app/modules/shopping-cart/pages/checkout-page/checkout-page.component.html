@@ -262,8 +262,13 @@
 
                         <div class="d-grid gap-2">
                             <button class="btn btn-primary btn-lg fw-bold" (click)="checkout()"
-                                [disabled]="this.disableForm">{{
-                                'label.pay' | translate }}</button>
+                                [disabled]="this.disableForm">
+                                <span *ngIf="!this.disableForm">
+                                    {{ 'label.pay' | translate }}
+                                </span>
+                                <span *ngIf="this.disableForm" class="spinner-border spinner-border-sm me-2" role="status"
+                                    aria-hidden="true"></span>
+                            </button>
                         </div>
                     </div>
                 </div>
