@@ -1,8 +1,8 @@
 <main class="container my-5">
     <section class="mx-3">
         <div *ngIf="!loading">
-            <h2 class="header-title mb-5">{{'title.account.orders' | translate}}
-            </h2>
+            <h1 class="header-title mb-5">{{'title.account.orders' | translate}}
+            </h1>
 
             <div *ngIf="!orderList || orderList.length === 0">
                 <p>{{'label.noOrders' | translate}}</p>

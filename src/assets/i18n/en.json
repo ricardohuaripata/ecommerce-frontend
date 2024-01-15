@@ -1,5 +1,7 @@
 {
   "title.home": "Home",
+  "title.sizes": "Sizes",
+  "title.careTips": "Care tips",
   "title.account": "Account",
   "title.cart": "Cart",
   "title.login": "Login",
@@ -84,8 +86,8 @@
   "label.delete": "Delete",
   "label.edit": "Edit",
   "label.noShippingAddresses": "You don't have any saved shipping address.",
-  "label.addShippingAddress": "Add shipping address",
-  "label.editShippingAddress": "Edit shipping address",
+  "label.addShippingAddress": "Add address",
+  "label.editShippingAddress": "Edit address",
   "label.pay": "Pay",
   "label.cardCredentials": "Card details",
   "label.cardCredentials.cardNumber": "Card number",
@@ -101,11 +103,16 @@
   "label.verifyEmail.success.text": "Your email has been successfully verified.",
   "label.verifyEmail.error.title": "Verification failed!",
   "label.verifyEmail.error.text": "Sorry, your email could not be verified.",
+  "label.careTips": "So that your garments and prints last as long as possible, we recommend:",
+  "label.careTips.tip1": "Machine wash at maximum 40º - Preferably in cold water",
+  "label.careTips.tip2": "Do not dry clean",
+  "label.careTips.tip3": "Do not use bleach",
+  "label.careTips.tip4": "Wash and hang the garment inside out",
+  "label.careTips.tip5": "Do not use dryer",
+  "label.careTips.tip6": "Do not iron on the print",
   "message.success.signup": "Successfully registered, now please sign in",
   "message.success.passwordChanged": "Password updated successfully",
   "message.success.userDetailsChanged": "Details updated successfully",
   "message.success.orderCreated": "Order created successfully",
   "message.success.resetPassword": "Password reseted successfully"
-
-
 }

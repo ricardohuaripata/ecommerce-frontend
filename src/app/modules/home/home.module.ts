@@ -12,12 +12,16 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 
 import { SharedModule } from "../../shared/shared.module";
 import { CategoryItemComponent } from './components/category-item/category-item.component';
+import { SizeChartPageComponent } from './pages/size-chart-page/size-chart-page.component';
+import { CareRecommendationsPageComponent } from './pages/care-recommendations-page/care-recommendations-page.component';
 
 @NgModule({
   declarations: [
     NotFoundPageComponent,
     HomePageComponent,
-    CategoryItemComponent
+    CategoryItemComponent,
+    SizeChartPageComponent,
+    CareRecommendationsPageComponent
   ],
   imports: [
     CommonModule,
