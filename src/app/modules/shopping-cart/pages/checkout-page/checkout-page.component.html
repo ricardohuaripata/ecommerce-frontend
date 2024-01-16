@@ -12,7 +12,7 @@
 
             <!-- Primera columna -->
             <div class="col-md-8">
-                <h2 class="fs-4 fw-bold mb-4">{{ 'label.deliveryAddress' | translate }}</h2>
+                <h4 class="fw-bold mb-4">{{ 'label.deliveryAddress' | translate }}</h4>
 
                 <div *ngIf="this.shippingAddressList.length > 0" class="row mb-4">
                     <div *ngFor="let shippingAddress of this.shippingAddressList" class="col-md-12 mb-2 clickable"
@@ -153,7 +153,7 @@
                             </div>
                         </div>
 
-                        <h2 class="fs-4 fw-bold my-4">{{ 'label.cardCredentials' | translate }}</h2>
+                        <h4 class="fw-bold my-4">{{ 'label.cardCredentials' | translate }}</h4>
 
                         <div class="col-md-6">
                             <!-- Card number input -->
@@ -222,7 +222,8 @@
                                 <div class="col-md-2 px-0">
                                     <a [routerLink]="['/products', item.sizeColorProductVariant.colorProductVariant.product.slug]"
                                         [queryParams]="{ color: item.sizeColorProductVariant.colorProductVariant.color.slug}">
-                                        <img [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
+                                        <img appImgBroken [defaultImage]="'assets/images/image-not-available.png'"
+                                            [src]="item.sizeColorProductVariant.colorProductVariant.mainImageUrl"
                                             alt="{{ item.sizeColorProductVariant.colorProductVariant.product.slug }}"
                                             class="img-thumbnail border-0 rounded-0" width="100" height="100">
                                     </a>
@@ -237,9 +238,15 @@
                                     </div>
 
                                     <div class="mt-5 d-flex justify-content-between">
-                                        <p class="mb-0">{{ 'label.quantity' | translate }} {{ item.quantity }}</p>
-                                        <p class="mb-0">{{ item.sizeColorProductVariant.colorProductVariant.finalPrice
-                                            }} €</p>
+                                        <span>{{ 'label.quantity' | translate }} {{ item.quantity }}</span>
+                                        <div class="d-flex">
+                                            <span
+                                                *ngIf="item.sizeColorProductVariant.colorProductVariant.finalPrice < item.sizeColorProductVariant.colorProductVariant.basePrice"
+                                                class="base-price me-1">{{
+                                                item.sizeColorProductVariant.colorProductVariant.basePrice }} €</span>
+                                            <span>{{ item.sizeColorProductVariant.colorProductVariant.finalPrice }}
+                                                €</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <hr class="mt-4">
@@ -266,8 +273,8 @@
                                 <span *ngIf="!this.disableForm">
                                     {{ 'label.pay' | translate }}
                                 </span>
-                                <span *ngIf="this.disableForm" class="spinner-border spinner-border-sm me-2" role="status"
-                                    aria-hidden="true"></span>
+                                <span *ngIf="this.disableForm" class="spinner-border spinner-border-sm me-2"
+                                    role="status" aria-hidden="true"></span>
                             </button>
                         </div>
                     </div>

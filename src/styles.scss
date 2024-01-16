@@ -43,6 +43,11 @@ body {
   height: 55px;
 }
 
+.base-price {
+  text-decoration: line-through; /* Tachado del precio original */
+  color: #d40000;
+}
+
 .form-control {
   border-radius: 0; /* Bordes rectos */
   border: 0;

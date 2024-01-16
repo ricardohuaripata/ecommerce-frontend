@@ -12,6 +12,7 @@ import { EmptyCartComponent } from './components/empty-cart/empty-cart.component
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
+import { SharedModule } from "../../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ToastModule } from 'primeng/toast';
     ReactiveFormsModule,
     FormsModule,
     ToastModule,
+    SharedModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

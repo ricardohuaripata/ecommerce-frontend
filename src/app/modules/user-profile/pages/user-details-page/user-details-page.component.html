@@ -6,7 +6,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form [formGroup]="form" (ngSubmit)="updateUserDetails()">
-                        <h1 class="header-title mb-5">{{ 'title.account.details' | translate }}</h1>
+                        <h2 class="header-title mb-5">{{ 'title.account.details' | translate }}</h2>
 
                         <!-- Firstname input -->
                         <div class="form-floating mb-3">
@@ -60,7 +60,7 @@
     <div class="container my-5" style="max-width: 1450px;">
         <section class="mx-2">
             <div class="row mt-5">
-                <h2 class="fs-4 fw-bold mb-4 text-center">{{ 'label.shippingAddresses' | translate }}</h2>
+                <h4 class="fw-bold mb-4 text-center">{{ 'label.shippingAddresses' | translate }}</h4>
 
                 <div class="text-center mb-4">
                     <button class="btn btn-outline-primary fw-semibold" [routerLink]="['/account/shipping-address']">{{

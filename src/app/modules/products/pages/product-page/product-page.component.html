@@ -6,7 +6,6 @@
             <!-- Primera columna -->
             <div class="col-md-8">
                 <!-- Imágenes del producto -->
-
                 <ng-container
                     *ngIf="targetColorProductVariant?.productImageList && targetColorProductVariant?.productImageList!.length > 0; else noImages">
                     <p-galleria [value]="targetColorProductVariant?.productImageList!" [circular]="true"
@@ -39,12 +38,15 @@
                 <h2 class="fw-bold mt-5">{{ this.targetColorProductVariant?.product?.title }}</h2>
 
                 <!-- Precio del producto -->
-                <p class="fs-6">{{ this.targetColorProductVariant?.finalPrice }} €</p>
+                <div class="d-flex mb-4">
+                    <span *ngIf="this.targetColorProductVariant!.finalPrice < this.targetColorProductVariant!.basePrice"
+                        class="fs-6 base-price me-1">{{
+                        this.targetColorProductVariant?.basePrice }} €</span>
+                    <span class="fs-6">{{ this.targetColorProductVariant?.finalPrice }} €</span>
+                </div>
 
                 <div class="mb-4">
-
                     <div class="row row-cols-3 row-cols-md-4">
-
                         <!-- Itera sobre las imágenes de otras variaciones de color -->
                         <div class="col-md-4" *ngFor="let colorProductVariant of this.colorProductVariantList">
                             <a [routerLink]="['/products', colorProductVariant.product.slug]"
@@ -53,7 +55,6 @@
                                     [src]="colorProductVariant.mainImageUrl" class="img-fluid"
                                     alt="{{ colorProductVariant.color.slug }}"
                                     [class.selected-color-variant]="colorProductVariant.id === targetColorProductVariant?.id" />
-
                             </a>
                         </div>
                     </div>
