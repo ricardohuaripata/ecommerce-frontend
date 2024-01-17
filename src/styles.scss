@@ -10,7 +10,7 @@
 }
 
 $primary: #ffcc03;
-$secondary: black;
+$secondary: #000000;
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import "primeng/resources/themes/mdc-light-indigo/theme.css";
@@ -87,4 +87,9 @@ body {
 
 .p-galleria .p-galleria-item-nav {
   color: black !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+  border-bottom: 1px solid black;
 }
