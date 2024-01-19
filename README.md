@@ -1,6 +1,6 @@
 # Ecommerce frontend
 
-Este proyecto está basado en la página "https://www.ogsbrand.com", gran parte del diseño de su interfaz de usuario ha sido copiada con el propósito de saltarse la fase de branding y diseño, pudiendo así centrarse en el desarrollo de la interfaz a nivel de comunicación entre cliente y servidor.
+Este proyecto está basado en la página https://www.ogsbrand.com, gran parte del diseño de su interfaz de usuario ha sido copiada con el propósito de omitir la fase de branding y diseño, pudiendo así centrarse en el desarrollo de la interfaz a nivel de comunicación entre cliente y servidor.
 
 ## 🛠️ Stack
 
