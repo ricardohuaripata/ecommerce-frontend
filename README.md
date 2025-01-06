@@ -20,22 +20,9 @@ Este proyecto está basado en la página https://www.ogsbrand.com, gran parte de
 
 - [**ngx-translate**](https://github.com/ngx-translate/core) - ngx-translate es una biblioteca para internacionalización (i18n) en aplicaciones Angular. Facilita la traducción de contenido de texto a varios idiomas, permitiendo que el proyecto admita a usuarios con diferentes preferencias de idioma.
 
-### Demo 1 "Carrito del usuario"
+## Galería
 
-https://github.com/ricardohuaripata/ecommerce-frontend/assets/102578959/9767b0cb-dc8f-4f1f-984c-0dee123f40f4
-
-### Demo 2 "Inicio de sesión"
-
-https://github.com/ricardohuaripata/ecommerce-frontend/assets/102578959/b997011c-4eec-4984-a3eb-d8a3378596f2
-
-### Demo 3 "Perfil del usuario"
-
-https://github.com/ricardohuaripata/ecommerce-frontend/assets/102578959/b4e825d9-e09c-4adc-b6e8-9689e86b576d
-
-### Demo 4 "Proceso de pago"
-
-https://github.com/ricardohuaripata/ecommerce-frontend/assets/102578959/00207e08-bbd9-4684-b582-f7cb32b59f2b
-
-### Demo 5 "Verificación de email"
-
-https://github.com/ricardohuaripata/ecommerce-frontend/assets/102578959/af5282b3-6e9b-4658-8a56-196746331d23
+![260_1x_shots_so_min_d9coe0](https://github.com/user-attachments/assets/30fc0050-e535-4b4e-bcfb-b854601e6434)
+![828_1x_shots_so_afhqrq-min_fxpyrm](https://github.com/user-attachments/assets/fc144e60-84fa-4c85-8b3a-65fda6963796)
+![192_1x_shots_so_rkvnpx-min_user85](https://github.com/user-attachments/assets/877326a2-9d34-4390-8de8-7d63284fd690)
+![170_1x_shots_so_wfzuzo-min_tfdos6](https://github.com/user-attachments/assets/5259fcd9-136b-46ec-84a0-55062d118597)
